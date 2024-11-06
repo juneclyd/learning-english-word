@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.topic-block {
+    display: flex;
+    justify-content: space-around;
+}
+.topic-block-info {
+    margin-top: 2vw;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+}
+.topic-block-info h1 {
+    font-size: 2.2vw;
+    line-height: 2vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+.topic-block-info span {
+    width: 23vw;
+    margin-top: 0.6vw;
+    font-size: 1vw;
+}
+.topic-block-info a {
+    text-align: center;
+    color: #fff;;
+    font-size: 0.8vw;
+    background-color: #3877EE;
+    padding: 0.4vw 0.7vw;
+    width: 6vw;
+    border-radius: 0.2vw;
+    cursor: pointer;
+    margin-top: 0.6vw;
+}
+.topic-block-info a:hover {
+    
+    background-color: #3877EECC;
+}
+
+
+.block-one {
+    display: flex;
+    justify-content: center;
+    background-color: #F6F7FB;
+    padding: 6vw 0;
+}
+.block-one-info {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    margin-right: 4vw;
+    margin-top: 4vw;
+}
+.block-one-info h1 {
+    width: 32vw;
+    font-size: 2.2vw;
+    line-height: 2.7vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+.block-one span {
+    width: 34vw;
+    margin-top: 0.6vw;
+    font-size: 1.61vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    line-height: 2vw;
+    font-style: normal;
+}
+.block-one a {
+    width: 10vw;
+    height: 2.6vw;
+    text-align: center;
+    color: #fff;
+    font-size: 1.1vw;
+    background-color: #3877EE;
+    border-radius: 0.2vw;
+    cursor: pointer;
+    margin-top: 1.6vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.block-one img{
+    width: 37vw;
+    height: 23vw;
+    margin-left: 4vw;
+}
+.block-one-info a:hover {
+    
+    background-color: #3877EECC;
+}
+
+
+.block-two {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    padding: 6vw 0;
+}
+.block-two-info {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    margin-right: 14vw;
+    margin-top: 2vw;
+}
+.block-two-info h1 {
+    font-size: 1.6vw;
+    line-height: 2.7vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+.block-two span {
+    width: 34vw;
+    margin-top: 0.6vw;
+    font-size: 1.05vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    line-height: 1.5vw;
+    font-style: normal;
+
+}
+.block-two a {
+    width: 10vw;
+    height: 2.6vw;
+    text-align: center;
+    color: #fff;
+    font-size: 1.1vw;
+    background-color: #3877EE;
+    border-radius: 0.2vw;
+    cursor: pointer;
+    margin-top: 1.6vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.block-two img{
+    width: 19vw;
+    height: 20.5vw;
+    margin-right: 10vw;
+}
+.block-two-info a:hover {
+    
+    background-color: #3877EECC;
+}
+
+
+
+
+.block-three {
+    display: flex;
+    justify-content: center;
+    background-color: #F6F7FB;
+    padding: 6vw 0;
+}
+.block-three-info {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10vw;
+    margin-top: 2vw;
+}
+.block-three-info h1 {
+    font-size: 1.6vw;
+    line-height: 2.7vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+.block-three span {
+    width: 33vw;
+    margin-top: 0.6vw;
+    font-size: 1.05vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    line-height: 1.5vw;
+    font-style: normal;
+
+}
+.block-three a {
+    width: 10vw;
+    height: 2.6vw;
+    text-align: center;
+    color: #fff;
+    font-size: 1.1vw;
+    background-color: #3877EE;
+    border-radius: 0.2vw;
+    cursor: pointer;
+    margin-top: 1.6vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.block-three img{
+    margin-right: 10vw;
+    width: 25vw;
+    height: 16vw;
+}
+.block-three-info a:hover {
+    
+    background-color: #3877EECC;
+}
