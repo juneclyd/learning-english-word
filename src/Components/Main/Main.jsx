@@ -13,7 +13,7 @@ const Main = () => {
         <div className="Main">
             <header className='header-main'>
                 <div className="title">
-                    <img src={logo} style={{width: '1.85vw', height: '1.85vw'}}/>
+                    <img src={logo}/>
                     <h1 className='word-one'>СЛОВО</h1>
                     <h1 className='word-two'>ЗНАЙКА</h1>
                 </div>
@@ -27,16 +27,15 @@ const Main = () => {
             <BlockThree/>
             <PopularModule/>
             <footer className='footer-main'>
-                <div className="title">
-                    <img src={logo} style={{width: '1.85vw', height: '1.85vw'}}/>
-                    <h1 className='word-one'>СЛОВО</h1>
-                    <h1 className='word-two'>ЗНАЙКА</h1>
+                <div className="title footer-title">
+                    <img className='footer-img' src={logo}/>
+                    <h1 className='footer-word-one'>СЛОВО</h1>
+                    <h1 className='footer-word-two'>ЗНАЙКА</h1>
                 </div>
                 <div>
                     <span className='reg'>© Copyright СЛОВОЗНАЙКА</span>
                 </div>
             </footer>
-            
         </div>
     )
 }

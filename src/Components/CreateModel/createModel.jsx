@@ -5,6 +5,7 @@ import DoneModuleImg from './img/Done module.png';
 import createmoduleImg from './img/createmodule.png';
 import UserImg from './img/user.png';
 import './createModel.css';
+import axios from 'axios';
 
 const CreateModel = () => {
     const [wordsRender, setWordsRender] = useState([{ id: 0, wordEn: '', wordRu: '', cardImg: [] }]);
@@ -12,6 +13,7 @@ const CreateModel = () => {
     const [moduleDescription, setModuleDescription] = useState('');
     const [errors, setErrors] = useState({ title: '', description: '', words: [] });
     const [containerHeigh, setcontainerHeigh] = useState(71);
+    const [stateBurger, setStateBurger] = useState(false)
 
     const validateInputs = () => {
         let valid = true;
@@ -40,6 +42,14 @@ const CreateModel = () => {
         return valid;
     };
 
+    const handleStateBurger = () => {
+        if(stateBurger === false) {
+            setStateBurger(true)
+        } else {
+            setStateBurger(false)
+        }
+    }
+
     const addWord = () => {
         setWordsRender(prevWords => [...prevWords, { id: prevWords.length, wordEn: '', wordRu: '', cardImg: []}]);
     };
@@ -50,19 +60,18 @@ const CreateModel = () => {
 
     const handleFileChange = (index, event) => {
         const selectedFiles = Array.from(event.target.files);
-        const newCardImg = selectedFiles.map(file => URL.createObjectURL(file)); // создаем URL для каждого файла
+        const newCardImg = selectedFiles.map(file => file.name); // сохраняем только имя файла
         setWordsRender(prevWords => {
             const newWords = [...prevWords];
-            newWords[index].cardImg = newCardImg; // записываем только URL
+            newWords[index].cardImg = newCardImg; // записываем только имена файлов
             return newWords;
         });
-        console.log(selectedFiles)
     };
 
-    const removeFile = (index, fileURL) => {
+    const removeFile = (index, fileName) => {
         setWordsRender(prevWords => {
             const newWords = [...prevWords];
-            newWords[index].cardImg = newWords[index].cardImg.filter(url => url !== fileURL);
+            newWords[index].cardImg = newWords[index].cardImg.filter(name => name !== fileName);
             return newWords;
         });
     };
@@ -74,24 +83,58 @@ const CreateModel = () => {
     };
 
     const handleSave = () => {
+        console.log(wordsRender);
         if (validateInputs()) {
-            const dataToSave = {
+            const formData = new FormData();
+    
+            // Append module metadata
+            formData.append('module', JSON.stringify({
                 title: moduleTitle,
                 description: moduleDescription,
-                words: wordsRender
-            };
-            console.log(dataToSave); // Здесь вы можете выполнить действие с данными, например, отправить их на сервер
+                wordCount: wordsRender.length,
+                words: wordsRender.map(word => ({
+                    wordEn: word.wordEn,
+                    wordRu: word.wordRu,
+                    cardImg: word.cardImg
+                }))
+            }));
+            console.log(formData)
+            // Append images (one or more files for each word)
+            wordsRender.forEach((word, index) => {
+                word.cardImg.forEach(fileName => {
+                    const filePath = `/path/to/images/${fileName}`; // This assumes you are storing images locally on your server
+                    formData.append('cardImages', new File([filePath], fileName, { type: 'image/jpeg' }));
+                });
+            });
+    
+            // Send the request with FormData
+            axios.post('http://localhost:8080/word-learner/api/v1/modules', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'accept': '*/*',
+                }
+            })
+            .then(response => {
+                console.log('Module saved successfully:', response.data);
+                // Handle success, maybe clear form or redirect
+            })
+            .catch(error => {
+                console.error('Error saving module:', error);
+                // Handle error, maybe show a user-friendly message
+            });
         }
     };
+    
+    
 
     return (
         <div className="create-module">
             <header className="header-left">
                 <div className="header-left-icon">
-                    <img src={Burger} className='burger' alt="" />
-                    <img src={Logo} className='header-left-logo' alt="" />
+                    <img src={Burger} onClick={handleStateBurger} className='burger' alt="" />
+                    <img src={Logo} className='header-left-logo' alt=""/>
                 </div>
-                <div className='header-left-container-buttons'>
+                <div className='header-left-container-buttons'  style={!stateBurger ? {display: 'inline-flex'} : {display: 'none'} }>
                     <a className='header-left-button'>
                         <img src={DoneModuleImg} className='header-left-buttons-img' />
                         <span className='header-left-buttons-text'>Пройденные модули</span>
@@ -131,7 +174,7 @@ const CreateModel = () => {
                 {
                     wordsRender.map((el, index) => (
                         <div key={el.id} className='container-tasks-words'>
-                            <div style={{ display: 'flex' }}>
+                            <div style={{ display: 'flex' }} className='container-task-word-block'>
                                 <div className='container-tasks-words-input'>
                                     <span>Слово</span>
                                     <input 
@@ -165,16 +208,21 @@ const CreateModel = () => {
                                                     multiple
                                                     accept="image/*"
                                                 />
-                                                <span>Загрузить изображение</span>
+                                                
+                                                {/* Условие для отображения или текста, или списка файлов */}
+                                                {el.cardImg.length === 0 ? (
+                                                    <span>Загрузить изображение</span>
+                                                ) : (
+                                                    <div className="input-file-list">
+                                                        {el.cardImg.map(fileName => (
+                                                            <div key={fileName} className="input-file-list-item">
+                                                                <span>{fileName}</span> {/* Показываем только имя файла */}
+                                                                <a href="#" onClick={() => removeFile(index, fileName)} className="input-file-list-remove">x</a>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
                                             </label>
-                                        </div>
-                                        <div className="input-file-list">
-                                            {el.cardImg.map(url => (
-                                                <div key={url} className="input-file-list-item">
-                                                    <img src={url} alt="uploaded" className="uploaded-image" />
-                                                    <a href="#" onClick={() => removeFile(index, url)} className="input-file-list-remove">x</a>
-                                                </div>
-                                            ))}
                                         </div>
                                     </form>
                                 </div>

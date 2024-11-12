@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import './Module.css'
 import Burger from './img/🦆 icon _burger menu_.png'
 import Logo from './img/logo.png'
 import DoneModuleImg from './img/Done module.png'
 import createmoduleImg from './img/createmodule.png'
 import UserImg from './img/user.png'
-import './CreatedModeles.css'
-import RightContainerCreatedModeles from './CreatedModelesComponents/RightContainer/RightContainerCreatedModeles'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 
-const CreatedModeles = () => {
-    const userRole = JSON.parse(localStorage.getItem('dataUser')).role;
+const Module = () => {
     const [stateBurger, setStateBurger] = useState(false);
+    const userRole = JSON.parse(localStorage.getItem('dataUser')).role;
+    const infoModule = ['Карточки', 'Подбор', 'Тест'];
+    const btnModule = ['cat - кошка','cat - кошка','cat - кошка', 'cat - кошка','cat - кошка', 'cat - кошка', 'cat - кошка', 'cat - кошка', 'cat - кошка']
     const handleStateBurger = () => {
         if(stateBurger === false) {
             setStateBurger(true)
@@ -20,7 +21,7 @@ const CreatedModeles = () => {
         }
     }
     return (
-        <div className="created-modules">
+        <div className='module'>    
             <header className="header-left">
                 <div className="header-left-icon">
                 <img src={Burger} onClick={handleStateBurger} className='burger' alt="" />
@@ -41,9 +42,22 @@ const CreatedModeles = () => {
                     </Link>
                 </div>
             </header>
-            <RightContainerCreatedModeles/>
+            <div className='right-cart-model'>
+                <h1>Название модуля</h1>
+                <h2>Описание модуля</h2>
+                <div className='container-info-module'>
+                    {infoModule.map((el, index) => (
+                        <div key={index} className='info-block-module'>{el}</div>
+                    ))}
+                </div>
+                <div className='container-module-buttons'>
+                    {btnModule.map((el, index) => (
+                        <div className='module-buttons'>{el}</div>
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }
 
-export default CreatedModeles;
+export default Module;

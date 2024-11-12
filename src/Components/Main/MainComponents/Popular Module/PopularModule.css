@@ -34,6 +34,11 @@
     grid-template-rows: 13vw auto;
     justify-content: center;
 }
+.block-popular-module-container {
+    display: flex;
+    justify-self: flex-start;
+    align-items:center;
+}
 .block-info {
     margin: 1.2vw 0;
     font-size: 1.08vw;
@@ -68,4 +73,62 @@
     background: #2D3748;
     height: 1vw;
     margin: 0 0.6vw;
+}
+.block-title-img {
+    width: 1.3vw;
+}
+
+
+
+@media (max-width: 480px) {
+    .PopularModule {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+    }
+    .popular-module-title {
+        margin-left: 12.5vw;
+        margin-bottom: 15px;
+        font-size: 22px;
+        line-height: 2.7vw;
+        font-family: "Nunito", serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+    }
+    .block {
+        width: 280px;
+        height: 203px;
+        margin: 10px 0;
+        padding-left: 10px;
+    }
+    .block-title {
+        font-size: 20px;
+    }
+    .popular-module-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .block-popular-module-container {
+        display: contents;
+    }
+    .block-info {
+        font-size: 16px;
+    }
+    .block-button {
+        width: 92px;
+        height: 38px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+    .block-button:hover {
+        background-color: #3877EECC;
+    }
+    .vertic {
+        display: none;
+    }
+    .block-title-img {
+        width: 20px;
+        width: 20px;
+    }
 }

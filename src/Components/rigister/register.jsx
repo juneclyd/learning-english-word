@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; 
 import logo from './img/logo.png'
 import { useState } from 'react';
 import './register.css'
@@ -11,11 +11,14 @@ const Register = () => {
     const [passwordConf, setPasswordConf] = useState("");
     const [error, setError] = useState(null);
     const [successfully, setSuccessfully] = useState(null);
+    const [responseResult, setResponseResult] = useState(false);
 
     const [userNameError, setUserNameError] = useState(false);
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [passwordConfError, setPasswordConfError] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -63,7 +66,7 @@ const Register = () => {
 
         try {
             const response = await axios.post(
-                `https://localhost:8080/word-learner/api/v1/auth/register`,
+                `http://localhost:8080/word-learner/api/v1/auth/register`,
                 {
                     "username": userName,
                     "email": email,
@@ -77,10 +80,19 @@ const Register = () => {
                     },
                 }
             );
-            localStorage.setItem("registeredUser", JSON.stringify(response.data)); 
+            setPassword('');
+            setEmail('');
+            setPasswordConf('');
+            setPassword('');
+            localStorage.setItem("dataUser", JSON.stringify(response.data)); 
             setSuccessfully("Регистрация прошла успешно");
+            navigate(`/login`);
         } catch (error) {
-            setError("Ошибка регистрации. Пожалуйста, проверьте свои данные.");
+            setPassword('');
+            setEmail('');
+            setPasswordConf('');
+            setPassword('');
+            setResponseResult(true)
             console.error("Error:", error);
         }
     };
@@ -89,9 +101,9 @@ const Register = () => {
         <div className="login">
             <img src={logo} alt="logo" />
             <div className="title-login">
-                <h1 className='word-zero'>Регистрация в</h1>
-                <h1 className='word-one'>СЛОВО</h1>
-                <h1 className='word-two'>ЗНАЙКА</h1>
+                <h1 className='title-login-word-zero'>Регистрация в</h1>
+                <h1 className='title-login-word-one'>СЛОВО</h1>
+                <h1 className='title-login-word-two'>ЗНАЙКА</h1>
             </div>
             <div className='form-register'>
                 <div className='text-form-login-email'>
@@ -134,7 +146,8 @@ const Register = () => {
                     onChange={handlePasswordConfChange}
                 />
                 {passwordConfError ? <span className='error-message'>Неверный пароль</span>: ''}
-                <a className='btn-login' onClick={handleSubmit}>Зарегистрироваться</a>
+                <Link className='btn-login' onClick={handleSubmit}>Зарегистрироваться</Link>
+                {responseResult ? <span className='error-message-responseResult'>Ошибка регистрации. Пожалуйста, проверьте свои данные.</span>: ''}
             </div>
             <div className='block-register'>
                 <Link to='/login' className='btn-register'>Войти в личный кабинет</Link>

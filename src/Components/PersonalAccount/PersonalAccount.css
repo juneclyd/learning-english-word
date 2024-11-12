@@ -56,6 +56,9 @@
 .header-left-buttons-text:active{
     color: #3877EE;
 }
+.header-left-button img {
+    width: 1.6vw;
+}
 
 
 .right-user-data  {
@@ -203,37 +206,43 @@
     text-align: center;
     font-size: 1.1vw;
     font-family: "Nunito", serif;
-    font-optical-sizing: auto;
     font-weight: 500;
     line-height: 1.5vw;
-    font-style: normal;
     color: #FFFFFF;
     padding: 0 1.4vw;
     margin-right: 0.5vw;
 }
 
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 5vw solid transparent; /* 50px -> 5vw */
+    border-right: 5vw solid transparent; /* 50px -> 5vw */
+}
 .hexagon:before {
-	content: "";
-	position: absolute;
-	top: -2.47vw; /* -25px -> -2.5vw */
-	left: 0;
-	width: 0;
-	height: 0;
-	border-left: 5vw solid transparent; /* 50px -> 5vw */
-	border-right: 5vw solid transparent; /* 50px -> 5vw */
-	border-bottom: 2.5vw solid #3877EE99; /* 25px -> 2.5vw */
+    top: -2.47vw;
+    border-bottom: 2.5vw solid #3877EE99;
 }
 
 .hexagon:after {
-	content: "";
-	position: absolute;
-	bottom: -2.48vw; /* -25px -> -2.5vw */
-	left: 0;
-	width: 0;
-	height: 0;
-	border-left: 5vw solid transparent; /* 50px -> 5vw */
-	border-right: 5vw solid transparent; /* 50px -> 5vw */
-	border-top: 2.5vw solid #3877EE99; /* 25px -> 2.5vw */
+    bottom: -2.48vw;
+    border-top: 2.5vw solid #3877EE99;
+}
+
+/* Когда элемент активен, меняем фон */
+.hexagon.active-achievement {
+    background: #3877EE;
+}
+
+.hexagon.active-achievement:before {
+    border-bottom-color: #3877EE;
+}
+
+.hexagon.active-achievement:after {
+    border-top-color: #3877EE;
 }
 .right-user-actions-achievements {
     display: flex;
@@ -252,4 +261,36 @@
     height: 12vw;
     width: 73.64vw;
     display: flex;
+}
+
+
+
+@media (max-width: 480px) {
+    .burger {
+        display: block;
+        width: 24px;
+        height: 24px;
+    }
+    .header-left-logo {
+        width: 36px;
+        height: 36px;
+    }
+    .header-left-container-buttons {
+        background-color: white;
+        height: 100%;
+        width: 248px;
+        margin: 0;
+    }
+    .header-left-buttons-text {
+        font-size: 20px;
+        margin: 10px 10px;
+    }
+    .header-left-button {
+        width: 248px;
+        height: 20vw;
+    }
+    .header-left-button img {
+        width: 24px;
+        height: 24px;
+    }
 }

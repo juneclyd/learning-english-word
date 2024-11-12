@@ -13,10 +13,29 @@
     display: flex;
     margin: 3vw 0 1vw 0;
 }
-.word-zero {
+.title-login-word-zero {
     font-size: 1.1vw;
     color: #2D3748;
     margin-left: 0.4vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    line-height: 1.5vw;
+    font-style: normal;
+}
+.title-login-word-one {
+    font-size: 1.3vw;
+    color: #3877EE;
+    margin-left: 0.4vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    line-height: 1.5vw;
+    font-style: normal;
+}
+.title-login-word-two {
+    font-size: 1.3vw;
+    color: #EE6C4D;
     font-family: "Nunito", serif;
     font-optical-sizing: auto;
     font-weight: 800;
@@ -141,4 +160,27 @@
     justify-content: center;
     align-items: center;
     border-radius: 1vw; 
+}
+
+
+@media (max-width: 1000px) {
+    .title-login-word-zero {
+        font-size: 24px;
+    }
+    .title-login-word-one {
+        font-size: 20px;
+    }
+    .title-login-word-two {
+        font-size: 20px;
+    }
+    .form-login {
+        width: 280px;
+        height: 254px;
+        border-radius: 12px;
+    }
+    .input-text {
+        width: 248px;
+        height: 38px;
+        border-radius: 38px;
+    }
 }

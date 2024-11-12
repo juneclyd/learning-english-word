@@ -26,6 +26,7 @@ const RightContainerCreatedModeles = (props) => {
         console.log(data)
       setPosts(data.hits);
       setPageQty(data.nbPages);
+      console.log(posts)
 
       if (data.nbPages < page) {
         setPage(1);
