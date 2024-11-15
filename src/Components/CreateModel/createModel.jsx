@@ -14,6 +14,8 @@ const CreateModel = () => {
     const [errors, setErrors] = useState({ title: '', description: '', words: [] });
     const [containerHeigh, setcontainerHeigh] = useState(71);
     const [stateBurger, setStateBurger] = useState(false)
+    const userRole = JSON.parse(localStorage.getItem('dataUser'))?.role;
+    const userToken = JSON.parse(localStorage.getItem('dataUser'))?.token;
 
     const validateInputs = () => {
         let valid = true;
@@ -110,6 +112,7 @@ const CreateModel = () => {
             // Send the request with FormData
             axios.post('http://localhost:8080/word-learner/api/v1/modules', formData, {
                 headers: {
+                    'Authorization': `Bearer ${userToken}`,
                     'Content-Type': 'multipart/form-data',
                     'accept': '*/*',
                 }
