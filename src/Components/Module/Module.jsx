@@ -1,5 +1,5 @@
 import './Module.css'
-import Burger from './img/🦆 icon _burger menu_.png'
+import Burger from './img/icon _burger menu_.png'
 import Logo from './img/logo.png'
 import DoneModuleImg from './img/Done module.png'
 import createmoduleImg from './img/createmodule.png'
