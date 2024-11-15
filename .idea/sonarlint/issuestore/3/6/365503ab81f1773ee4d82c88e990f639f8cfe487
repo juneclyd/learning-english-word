@@ -1,0 +1,23 @@
+
+javascript:S6754":useState call is not destructured into value + setter pair(…ÙÒøÿÿÿÿJ$06848c0b-32b7-44ad-9d8b-8a9ab1ceac79
+†javascript:S1481"?Remove the declaration of the unused 'containerHeigh' variable.(…ÙÒøÿÿÿÿJ$ba324ba3-c98d-4fb0-bad7-931d62acd008
+ƒjavascript:S1854"<Remove this useless assignment to variable "containerHeigh".(…ÙÒøÿÿÿÿJ$107f7254-7704-4e5e-bb99-3db5e7b383f1
+‰javascript:S1481"BRemove the declaration of the unused 'setcontainerHeigh' variable.(…ÙÒøÿÿÿÿJ$40acc5e0-1659-476c-b6df-d53a4e96d883
+†javascript:S1854"?Remove this useless assignment to variable "setcontainerHeigh".(…ÙÒøÿÿÿÿJ$9fc19a3d-cbae-42b0-97b1-6b11c167ca43
+•javascript:S6847†"RNon-interactive elements should not be assigned mouse or keyboard event listeners.(òïâJ$a2c7ee08-b820-4233-b906-c4a1b00b4cab
+¢javascript:S1082†"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(òïâJ$4f0bf7e5-7b84-4758-a697-b7c770005930
+Ãjavascript:S6844Š"ÿThe href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles.(‡úãÿJ$0457f480-0f83-4192-b5b7-ad5236f2520a
+­javascript:S1077‹"jimg elements must have an alt prop, either with meaningful text, or an empty string for decorative images.(Ö“J$f697a465-29ad-4efd-9641-96936133ecf5
+Ãjavascript:S6844"ÿThe href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles.(‡úãÿJ$48fb3e9e-e777-41ac-94a6-eac057209718
+­javascript:S1077"jimg elements must have an alt prop, either with meaningful text, or an empty string for decorative images.(şÏº–J$c3e43dfd-dc07-45f7-a511-b8ec36d02177
+Ãjavascript:S6844’"ÿThe href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles.(‡úãÿJ$d8118490-56e7-4222-8076-6e203882bb68
+²javascript:S1077“"jimg elements must have an alt prop, either with meaningful text, or an empty string for decorative images.(ÁœÊÓÿÿÿÿÿJ$cb2f0e25-fcdc-4e1d-b04c-b0a5ebe3254b
+§javascript:S6844Ü"dAnchor used as a button. Anchors are primarily expected to navigate. Use the button element instead.(‡á¶«J$48895f94-c675-4f5b-b8b5-3720c53dc814
+…javascript:S6848æ"ÂAvoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.(âûJ$5ff2978a-448c-46c2-b292-8127b70bb34d
+¡javascript:S1082æ"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(âûJ$f6b60982-1074-4822-bc5a-3b355ddc7ac0
+…javascript:S6848ë"ÂAvoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.(Úéš
+J$abafa9a5-95de-4778-8780-6c637ac3b07e
+¡javascript:S1082ë"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(Úéš
+J$c6c725da-e6c5-49e6-885d-8f43fdf19871
+‹javascript:S6848ì"ÂAvoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.(Ğ¦ ŒıÿÿÿÿJ$29c33571-1c18-4961-854d-13f6261aca8f
+§javascript:S1082ì"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(Ğ¦ ŒıÿÿÿÿJ$95de5263-979a-4aa4-82c1-8f5eb59ad9a5

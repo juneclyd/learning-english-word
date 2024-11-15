@@ -1,0 +1,10 @@
+
+¢javascript:S6582>"[Prefer using an optional chain expression instead, as it's more concise and easier to read.(åÙ×‰úÿÿÿÿJ$3ab849ef-9efc-42b4-a19d-8ce5ff40e8e0
+”javascript:S6847T"RNon-interactive elements should not be assigned mouse or keyboard event listeners.(ƒÀJ$730d5078-112d-4cb3-8c2e-8f1eb3899388
+¡javascript:S1082T"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(ƒÀJ$78c71fac-87c5-4894-86f4-b0127dd3abca
+…javascript:S6848u"ÂAvoid non-native interactive elements. If using native HTML is not possible, add an appropriate role and support for tabbing, mouse, keyboard, and touch inputs to an interactive content element.(£›Š¯J$4cc71edc-3efa-493f-91dc-e9d9ba0e87e9
+¡javascript:S1082u"_Visible, non-interactive elements with click handlers must have at least one keyboard listener.(£›Š¯J$b4ee87ed-dfbf-4866-9c49-faab29d394d7
+fjavascript:S6479"Do not use Array index in keys(Ê¹¹óşÿÿÿÿJ$7e2152b4-06e9-4838-8a50-501422a6afdf
+fjavascript:S6479š"Do not use Array index in keys(Ê¹¹óşÿÿÿÿJ$4de57fb2-1ffb-4d68-9286-60dd04e85fa0
+fjavascript:S6479¦"Do not use Array index in keys(Ê¹¹óşÿÿÿÿJ$92db974a-a542-494c-83fc-e0cb90cc6703
+Ãjavascript:S6844¯"ÿThe href attribute is required for an anchor to be keyboard accessible. Provide a valid, navigable address as the href value. If you cannot provide an href, but still need the element to resemble a link, use a button and change it with appropriate styles.(¼ØšáJ$15f3d8ad-cd8c-4cc8-ad7e-345cfd4cdc27
