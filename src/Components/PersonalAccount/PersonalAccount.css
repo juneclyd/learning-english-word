@@ -23,6 +23,9 @@
 }
 
 
+.right-user-info-input {
+    display: flex;
+}
 .header-left-container-buttons {
     display: flex;
     flex-direction: column;
@@ -247,6 +250,9 @@
 .right-user-actions-achievements {
     display: flex;
     flex-direction: column;
+    margin-bottom: 4vw;
+    background-color: #F6F7FB;
+    padding-left: 1vw;
 }
 .right-user-actions-achievements span {
     font-size: 1.1vw;
@@ -259,8 +265,26 @@
 }
 .right-user-actions-achievements-container {
     height: 12vw;
-    width: 73.64vw;
+    width: 71.64vw;
     display: flex;
+}
+.exit {
+    background-color: red;
+    width: 11vw;
+    height: 3.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    border-radius: 0.3vw;
+    font-size: 1.1vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    line-height: 1.5vw;
+    font-style: normal;
+    cursor: pointer;
+    margin-top: 2vw;
 }
 
 
@@ -293,4 +317,73 @@
         width: 24px;
         height: 24px;
     }
+
+
+    .right-user-data {
+        margin-top: 85px;
+    }
+    .right-user-data h1 {
+        font-size: 24px;
+        margin-left: 12vw;
+        margin-bottom: 40px;
+    }
+    .title-data {
+        margin: 20px 0;
+        font-size: 20px;
+        margin-left: 12vw;
+    }
+    .right-user-info {
+        width: 280px;
+        height: 238px;
+        margin-top: 20px;
+        margin-left: 12vw;
+    }
+    .right-user-info-input {
+        flex-direction: column;
+    }
+    .right-user-info span {
+        font-size: 16px;
+        margin: 20px 0;
+    }
+    .right-user-info input {
+        width: 248px;
+        height: 38px;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    .save-info-user {
+        width: 108px;
+        height: 38px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+
+    .right-user-actions {
+        flex-direction: column;
+        width: 280px;
+        height: 665px;
+        margin-left: 12vw;
+    }
+    .right-user-actions-info {
+        margin: 25px 0 0 0;
+    }
+    .right-user-actions img {
+        width: 192px;
+        height: 206px;
+    }
+    .right-user-actions-info-title {
+        font-size: 20px;
+    }
+    .right-user-actions-info-container {
+        grid-template-columns: 10px;
+    }
+    .right-user-actions-info-container span {
+        font-size: 16px;
+        margin-top: 11px;
+        margin-bottom: 16px;
+        line-height: 20px;
+        width: 177px;
+    }
+
 }

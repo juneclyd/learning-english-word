@@ -64,6 +64,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 .block-button:hover {
     background-color: #3877EECC;

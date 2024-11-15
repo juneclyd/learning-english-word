@@ -13,13 +13,31 @@ const PersonalAccount = () => {
     const study = ['активный ученик', 'упорный ученик', 'пробивной ученик', 'создатель модулей', 'мастер карточек', 'мастер подборов', 'мастер тестов'];
     const chain = ['3 дня', '5 дней', '10 дней', '15 дней', '40 дней', '100 дней', '300 дней'];
     const module = ['1 модуль', '3 модуля', '10 модулей', '15 модулей', '40 модулей', '100 модулей', '300 модулей'];
+    const [userName, setUserName] = useState('');
+    const [email, setEmail] = useState('');
 
-    const [backgroundStudy, setBackgroundStudy] = useState(['#3877EE99', '#3877EE99', '#3877EE99', '#3877EE99', '#3877EE99', '#3877EE99', '#3877EE99'])
-    const [backgroundLesson, setBackgroundLesson] = useState(['#3877EE99', '#3877EE99', '#3877EE99', '#3877EE99', '#3877EE99', '#3877EE99', '#3877EE99'])
-    const [backgroundModule, setBackgroundModule] = useState(['#3877EE99', '#3877EE99', '#3877EE99', '#3877EE99', '#3877EE99', '#3877EE99', '#3877EE99'])
+    const [userNamePlaceholder, setUserNamePlaceholder] = useState('');
+    const [emailPlaceholder, setEmailPlaceholder] = useState('');
+    const [stateBurger, setStateBurger] = useState(false)
+
     const [data, setData] = useState(null);
     const userRole = JSON.parse(localStorage.getItem('dataUser'))?.role;
     const userToken = JSON.parse(localStorage.getItem('dataUser'))?.token;
+
+    const saveInfoUser = (event) => {
+        setUserName('');
+        setEmail('');
+    }
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+        setEmailPlaceholder(e.target.value)
+    };
+
+    const handleUserNameChange = (e) => {
+        setUserName(e.target.value);
+        setUserNamePlaceholder(e.target.value);
+    };
 
     useEffect(() => {
         if (userToken) {
@@ -30,6 +48,8 @@ const PersonalAccount = () => {
             })
             .then(response => {
                 setData(response.data);
+                setUserNamePlaceholder(response.data.username);
+                setEmailPlaceholder(response.data.email);
                 console.log(response.data); 
             })
             .catch(error => {
@@ -40,10 +60,18 @@ const PersonalAccount = () => {
 
     const checkStudy = (achievementName) => {
         if (data && data.achievements) {
+            console.log(data.achievements.some((el) => el.name === achievementName))
             return data.achievements.some((el) => el.name === achievementName);
         }
         return false;
     };
+    const handleStateBurger = () => {
+        if(stateBurger === false) {
+            setStateBurger(true)
+        } else {
+            setStateBurger(false)
+        }
+    }
 
     if (!data) {
         return <div>Загрузка...</div>; 
@@ -53,10 +81,10 @@ const PersonalAccount = () => {
         <div className="personal-account">
             <header className="header-left">
                 <div className="header-left-icon">
-                    <img src={Burger} className='burger' alt="burger menu" />
+                    <img src={Burger} onClick={handleStateBurger} className='burger' alt="burger menu" />
                     <img src={Logo} className='header-left-logo' alt="logo" />
                 </div>
-                <div className='header-left-container-buttons'>
+                <div className='header-left-container-buttons'  style={!stateBurger ? {display: 'inline-flex'} : {display: 'none'} }>
                     <Link to={`/createdModeles/${userRole}`} className='header-left-button'>
                         <img src={DoneModuleImg} className='header-left-buttons-img' alt="done modules" />
                         <span className='header-left-buttons-text'>Пройденные модули</span>
@@ -76,22 +104,22 @@ const PersonalAccount = () => {
                 <h1>Профиль</h1>
                 <span className='title-data'>Данные</span>
                 <div className='right-user-info'>
-                    <div style={{ display: 'flex' }}>
+                    <div className='right-user-info-input'>
                         <div className='user-name'>
                             <span>Имя пользователя</span>
-                            <input type='text' placeholder='Введите имя пользователя' />
+                            <input type='text' placeholder={`${userNamePlaceholder}`} onChange={handleUserNameChange} value={userName}/>
                         </div>
                         <div className='user-email'>
                             <span>Email</span>
-                            <input type='text' placeholder='Введите email' />
+                            <input type='text' placeholder={`${emailPlaceholder}`} onChange={handleEmailChange} value={email}/>
                         </div>
                     </div>
-                    <div className='save-info-user'>Сохранить</div>
+                    <div className='save-info-user' onClick={saveInfoUser}>Сохранить</div>
                 </div>
 
                 <span className='title-data'>Действия</span>
                 <div className='right-user-actions'>
-                    <img src={Calendar} style={{ width: '13vw' }} alt="calendar" />
+                    <img src={Calendar} alt="calendar" />
                     <div className='right-user-actions-info'>
                         <span className='right-user-actions-info-title'>Текущая цепочка: 3 дня</span>
                         <div className='right-user-actions-info-container'>
@@ -144,6 +172,7 @@ const PersonalAccount = () => {
                         ))}
                     </div>
                 </div>
+                <a className='exit'>Выйти с аккаунта</a>
             </div>
         </div>
     );

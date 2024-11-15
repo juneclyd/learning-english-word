@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import User from '../../img/user.png'
 import './PopularModule.css'
 const data = ['','','','']
@@ -20,7 +21,7 @@ const PopularModule = () => {
                                     <span className='block-info'>Автор</span>
                                 </div>
                             </div>
-                            <a className='block-button'>Перейти</a>
+                            <Link to='login' className='block-button'>Перейти</Link>
                         </div>
                     );       
                 })}
