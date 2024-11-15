@@ -1,4 +1,4 @@
-import Train from "../../img/🦆 illustration _Train travel_.png"
+import Train from "../../img/illustration _Train travel_.png"
 import { Link } from 'react-router-dom'
 
 const BlockOne = () => {
