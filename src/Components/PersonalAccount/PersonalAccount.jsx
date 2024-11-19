@@ -61,29 +61,34 @@ const PersonalAccount = () => {
     const saveDataUser = () => {
         const SERVER_URL = process.env.REACT_APP_BACKEND_URL
         setuserToken(JSON.parse(localStorage.getItem('dataUser'))?.token)
-        axios.patch(`${SERVER_URL}word-learner/api/v1/profile`, 
-            {
-                "username" : userName,
-                "email" : email
-            },
-            {
-                headers: {
-                    'Authorization': `Bearer ${userToken}`
-                }
-            })
-            .then(response => {
-                console.log(response)
-                const dataUser = JSON.parse(localStorage.getItem('dataUser'));
-                dataUser.token = response.data.newToken
-                localStorage.setItem("dataUser", JSON.stringify(dataUser)); 
-                setuserToken(JSON.parse(localStorage.getItem('dataUser'))?.token)
-
-                setUserName(''); 
-                setEmail(''); 
-            })
-            .catch(error => {
-                console.error('Error fetching profile data:', error);
+        if(userName != "" && email != "") {
+            console.log(userName)
+        console.log(email)
+            axios.patch(`${SERVER_URL}word-learner/api/v1/profile`, 
+                {
+                    "username" : userName,
+                    "email" : email
+                },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${userToken}`
+                    }
+                })
+                .then(response => {
+                    console.log(response)
+                    const dataUser = JSON.parse(localStorage.getItem('dataUser'));
+                    dataUser.token = response.data.newToken
+                    localStorage.setItem("dataUser", JSON.stringify(dataUser)); 
+                    setuserToken(JSON.parse(localStorage.getItem('dataUser'))?.token)
+    
+                    setUserName(''); 
+                    setEmail(''); 
+                })
+                .catch(error => {
+                    console.error('Error fetching profile data:', error);
             });
+        }
+        
     }
 
     useEffect(() => {
