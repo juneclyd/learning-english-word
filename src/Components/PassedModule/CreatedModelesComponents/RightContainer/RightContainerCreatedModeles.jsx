@@ -15,9 +15,9 @@ const RightContainerCreatedModeles = () => {
   const [userRole, setUserRole] = useState(JSON.parse(localStorage.getItem('dataUser')).role);
   const [userToken, setuserToken] = useState(JSON.parse(localStorage.getItem('dataUser'))?.token);
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]); // Инициализация как пустой массив
 
-  const SERVER_URL = process.env.REACT_APP_BACKEND_URL
+  const SERVER_URL = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate();
 
   // Пагинация данных
@@ -43,8 +43,8 @@ const RightContainerCreatedModeles = () => {
       },
     })
     .then(({ data }) => {
-      console.log(data)
-      setData(data)
+      console.log(data);
+      setData(data);  // Обрабатываем data.modules, если оно есть
       const paginatedData = pagination(data.modules || []);  // Пагинируем данные
       setPosts(paginatedData);  // Сохраняем все данные
       setFilteredPosts(paginatedData);  // Изначально отображаем все данные
@@ -52,9 +52,9 @@ const RightContainerCreatedModeles = () => {
     })
     .catch((error) => {
       console.error("Ошибка при загрузке данных:", error);
-    }).finally( () => {
+    }).finally(() => {
       setIsLoading(false);
-    })
+    });
   }, [userToken]);
 
   // Фильтрация данных на основе поискового запроса
@@ -82,13 +82,10 @@ const RightContainerCreatedModeles = () => {
 
   // Переход к детальному просмотру модуля
   const clikGoOver = (id) => {
-    setUserRole(JSON.parse(localStorage.getItem('dataUser')).role)
+    setUserRole(JSON.parse(localStorage.getItem('dataUser')).role);
     localStorage.setItem("idModule", JSON.stringify(id));
     navigate(`/moduleOverview/${userRole}`);
   };
-
-  // Проверка, если в filteredPosts нет данных, показывать сообщение "Нет данных для отображения"
-  const isEmpty = data.length === 0;
 
   return (
     <div>
@@ -116,32 +113,28 @@ const RightContainerCreatedModeles = () => {
         ) : (
           <Stack spacing={2}>
             <div className="container-created-modules">
-              {isEmpty ? (
-                <div style={{marginTop: '2vw' }}>Нет пройденных модулей</div>
-              ) : (
-                data.map((post) => (
-                  <div key={post.objectID} className="block-created-module">
-                    <span className="block-created-module-title">{post.title}</span>
-                    <div className="block-created-module-date">
-                      <span className="block-created-module-info">{post.result}/{post.wordCount} cлов</span>
-                      <div className="block-created-module-line"></div>
-                      <span className="block-created-module-info">
-                        Создано: {new Date(post.lastSubmission).toLocaleDateString('ru-RU', {
-                          day: '2-digit',
-                          month: '2-digit',
-                          year: 'numeric',
-                        })}
-                      </span>
-                    </div>
-                    <div onClick={() => clikGoOver(post.id)} className="block-created-module-cell">
-                      Перейти
-                    </div>
+              {data.map((post) => (
+                <div key={post.objectID} className="block-created-module">
+                  <span className="block-created-module-title">{post.title}</span>
+                  <div className="block-created-module-date">
+                    <span className="block-created-module-info">{post.result}/{post.wordCount} cлов</span>
+                    <div className="block-created-module-line"></div>
+                    <span className="block-created-module-info">
+                      Пройдено: {new Date(post.lastSubmission).toLocaleDateString('ru-RU', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                      })}
+                    </span>
                   </div>
-                ))
-              )}
+                  <div onClick={() => clikGoOver(post.id)} className="block-created-module-cell">
+                    Перейти
+                  </div>
+                </div>
+              ))}
             </div>
 
-            {!!pageQty && !isEmpty && (
+            {!!pageQty && (
               <Pagination
                 count={pageQty}  // Количество страниц для фильтрованных данных
                 page={page}
