@@ -19,6 +19,8 @@ const CreateModel = () => {
   const [userRole, setUserRole] = useState(JSON.parse(localStorage.getItem('dataUser')).role);
   const [userToken, setuserToken] = useState(JSON.parse(localStorage.getItem('dataUser'))?.token);
 
+  const SERVER_URL = process.env.REACT_APP_BACKEND_URL
+
   const [buttonAdmin, setButtonAdmin] = useState(false);
   useEffect(() => {
     setUserRole(JSON.parse(localStorage.getItem('dataUser')).role)
@@ -114,7 +116,7 @@ const CreateModel = () => {
         console.log(i + " " + el)
       })
 
-      axios.post("http://localhost:8080/word-learner/api/v1/modules", formData, {
+      axios.post(`${SERVER_URL}word-learner/api/v1/modules`, formData, {
         headers: {
           "Authorization": `Bearer ${userToken}`,
         }

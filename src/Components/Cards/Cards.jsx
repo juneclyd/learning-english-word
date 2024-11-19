@@ -22,6 +22,7 @@ const Cards = () => {
     const [page, setPage] = useState(1);
     const [rightAnswer, setRightAnswer] = useState(0);
     const [flagModalWindow, setFlagModalWindow] = useState(false);
+    const SERVER_URL = process.env.REACT_APP_BACKEND_URL
 
     const navigate = useNavigate()
     console.log(idModule)
@@ -48,7 +49,7 @@ const Cards = () => {
     }
 
     const clickExit = () => {
-        axios.post(`http://localhost:8080/word-learner/api/v1/submissions`, {
+        axios.post(`${SERVER_URL}word-learner/api/v1/submissions`, {
             'correct': rightAnswer,
             'moduleId': idModule,
             'type': 'TEST'
@@ -84,7 +85,7 @@ const Cards = () => {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/word-learner/api/v1/tests/${idModule}`, {
+        axios.get(`${SERVER_URL}/word-learner/api/v1/tests/${idModule}`, {
             headers: {
                 'Authorization': `Bearer ${userToken}`
             }

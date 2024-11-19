@@ -27,6 +27,7 @@ const RightContainerCreatedModeles = (props) => {
   const [userToken, setuserToken] = useState(JSON.parse(localStorage.getItem('dataUser'))?.token);
   const [idModule, setIdModule] = useState(JSON.parse(localStorage.getItem('idModule')));
   const navigate = useNavigate()
+  const SERVER_URL = process.env.REACT_APP_BACKEND_URL
 
   const pagination = (data) => {
     let paginationLength = data.length;
@@ -45,7 +46,7 @@ const RightContainerCreatedModeles = (props) => {
 
   useEffect(() => {
     setuserToken(JSON.parse(localStorage.getItem('dataUser')).token);
-    axios.get(`http://localhost:8080/word-learner/api/v1/modules/${idModule}`, {
+    axios.get(`${SERVER_URL}word-learner/api/v1/modules/${idModule}`, {
       headers: {
         'Authorization': `Bearer ${userToken}`
       }

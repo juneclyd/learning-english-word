@@ -35,6 +35,8 @@ const Test = () => {
         }
     }, [userRole]);
 
+    const SERVER_URL = process.env.REACT_APP_BACKEND_URL
+
     const clickNextTask = () => {
         
         if (page == data.questions.length) {
@@ -52,7 +54,7 @@ const Test = () => {
         setUserRole(JSON.parse(localStorage.getItem('dataUser')).role)
         setuserToken(JSON.parse(localStorage.getItem('dataUser')).token)
         setIdModule(JSON.parse(localStorage.getItem('idModule')))
-        axios.post(`http://localhost:8080/word-learner/api/v1/submissions`, {
+        axios.post(`${SERVER_URL}word-learner/api/v1/submissions`, {
             'correct': rightAnswer,
             'moduleId': idModule,
             'type': 'TEST'
@@ -89,7 +91,7 @@ const Test = () => {
 
     useEffect(() => {
         setIdModule(JSON.parse(localStorage.getItem('idModule')))
-        axios.get(`http://localhost:8080/word-learner/api/v1/tests/${idModule}`, {
+        axios.get(`${SERVER_URL}word-learner/api/v1/tests/${idModule}`, {
             headers: {
                 'Authorization': `Bearer ${userToken}`
             }

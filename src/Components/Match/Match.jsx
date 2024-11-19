@@ -27,6 +27,8 @@ const Match = () => {
   const navigate = useNavigate();
 
   const [buttonAdmin, setButtonAdmin] = useState(false);
+
+  const SERVER_URL = process.env.REACT_APP_BACKEND_URL
   useEffect(() => {
     setUserRole(JSON.parse(localStorage.getItem('dataUser')).role)
       if (userRole === 'ROLE_ADMIN') {
@@ -54,7 +56,7 @@ const Match = () => {
     setIdModule(JSON.parse(localStorage.getItem('idModule')))
     axios
       .post(
-        `http://localhost:8080/word-learner/api/v1/submissions`,
+        `${SERVER_URL}word-learner/api/v1/submissions`,
         {
           correct: rightAnswer,
           moduleId: idModule,
@@ -82,7 +84,7 @@ const Match = () => {
   useEffect(() => {
     setIdModule(JSON.parse(localStorage.getItem('idModule')))
     axios
-      .get(`http://localhost:8080/word-learner/api/v1/matches/${idModule}`, {
+      .get(`${SERVER_URL}word-learner/api/v1/matches/${idModule}`, {
         headers: {
           Authorization: `Bearer ${userToken}`,
         },

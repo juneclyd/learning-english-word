@@ -4,72 +4,59 @@ import { useNavigate } from "react-router-dom";
 import { Container, Pagination, TextField, Stack } from "@mui/material";
 import './RightContainerCreatedModeles.css';
 
-const RightContainerCreatedModeles = (props) => {
-  console.log(props);
+const RightContainerCreatedModeles = () => {
   const [posts, setPosts] = useState([]); // Все данные
   const [filteredPosts, setFilteredPosts] = useState([]); // Отфильтрованные данные
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [pageQty, setPageQty] = useState(0);
-  const [userRole, setUserRole] = useState(JSON.parse(localStorage.getItem('dataUser')).role);
-  const [userToken, setuserToken] = useState(JSON.parse(localStorage.getItem('dataUser'))?.token);
+  const [userRole, setUserRole] = useState(null);
+  const [userToken, setUserToken] = useState(null);
   const navigate = useNavigate();
 
-  // Пагинация данных
-  const pagination = (data) => {
-    let paginationLength = data.length;
-    const finishResultData = [];
-    let modifiedEndElement = 9;
-    let modifiedInitElement = 0;
+  const SERVER_URL = process.env.REACT_APP_BACKEND_URL
 
-    while (modifiedInitElement < paginationLength) {
-      finishResultData.push(data.slice(modifiedInitElement, modifiedEndElement));
-      modifiedInitElement += 9;
-      modifiedEndElement += 9;
-    }
-
-    return finishResultData;
-  };
-
-  // Делаем запрос к серверу для получения всех данных
+  // Инициализация данных пользователя из localStorage
   useEffect(() => {
-    setuserToken(JSON.parse(localStorage.getItem('dataUser')))
-    axios.get('http://localhost:8080/word-learner/api/v1/modules', {
-      headers: {
-        'Authorization': `Bearer ${userToken}`
-      }
-    })
-    .then(({ data }) => {
-      console.log(data);
-      setPosts(data); // Сохраняем все данные
-      setFilteredPosts(data); // Изначально отображаем все данные
-      setPageQty(Math.ceil(data.length / 9)); // Обновляем количество страниц
-    })
-    .catch((error) => {
-      console.error("Ошибка при загрузке данных:", error);
-    });
-  }, [userToken]);
+    const userData = JSON.parse(localStorage.getItem('dataUser'));
+    setUserRole(userData?.role);
+    setUserToken(userData?.token);
+  }, []); // Этот useEffect сработает только при монтировании компонента
+
+  // Запрос данных при получении userToken
+  useEffect(() => {
+    if (userToken) {
+      axios.get(`${SERVER_URL}word-learner/api/v1/modules`, {
+        headers: {
+          'Authorization': `Bearer ${userToken}`
+        }
+      })
+      .then(({ data }) => {
+        setPosts(data);
+        setFilteredPosts(data);
+        setPageQty(Math.ceil(data.length / 9));
+      })
+      .catch((error) => {
+        console.error("Ошибка при загрузке данных:", error);
+      });
+    }
+  }, [userToken]); // Выполнится только если userToken изменится
 
   // Фильтрация данных на основе поискового запроса
   useEffect(() => {
-    // Фильтруем данные по запросу
     const filtered = posts.filter((post) =>
       post.title.toLowerCase().includes(query.toLowerCase()) ||
       post.wordCount.toString().includes(query)
     );
-    setFilteredPosts(filtered); // Обновляем отфильтрованные данные
-    setPage(1); // Сбрасываем страницу на 1 при новом запросе
+    setFilteredPosts(filtered);
+    setPage(1);
   }, [query, posts]);
 
-  // Переход к созданию нового модуля
   const clikCreateModule = () => {
-    setUserRole(JSON.parse(localStorage.getItem('dataUser')).role)
     navigate(`/createModel/${userRole}`);
   };
 
-  // Переход к детальному просмотру модуля
   const clikGoOver = (id) => {
-    setUserRole(JSON.parse(localStorage.getItem('dataUser')).role)
     localStorage.setItem("idModule", JSON.stringify(id));
     navigate(`/moduleOverview/${userRole}`);
   };
@@ -81,9 +68,8 @@ const RightContainerCreatedModeles = (props) => {
           <TextField
               fullWidth
               value={query}
-              onChange={(event) => setQuery(event.target.value)} // Обновляем запрос
+              onChange={(event) => setQuery(event.target.value)}
               variant="outlined"
-              // placeholder="Введите название модуля"
           />
         </div>
         <div className="full-modules-title-button">
@@ -117,7 +103,7 @@ const RightContainerCreatedModeles = (props) => {
             <Pagination
               count={Math.ceil(filteredPosts.length / 9)}
               page={page}
-              onChange={(_, num) => setPage(num)} // Обработчик для изменения страницы
+              onChange={(_, num) => setPage(num)}
               hidePrevButton
               hideNextButton
               sx={{ marginY: 3, marginX: "auto" }}

@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Container, Pagination, TextField, Stack } from "@mui/material";
 import './RightContainerCreatedModeles.css';
 
-const RightContainerCreatedModeles = (props) => {
-  console.log(props);
+const RightContainerCreatedModeles = () => {
   const [posts, setPosts] = useState([]); // Все данные
   const [filteredPosts, setFilteredPosts] = useState([]); // Отфильтрованные данные
   const [query, setQuery] = useState(""); // Поисковый запрос
@@ -14,6 +13,7 @@ const RightContainerCreatedModeles = (props) => {
   const [userRole, setUserRole] = useState(JSON.parse(localStorage.getItem('dataUser')).role);
   const [userToken, setuserToken] = useState(JSON.parse(localStorage.getItem('dataUser'))?.token);
   const navigate = useNavigate();
+  const SERVER_URL = process.env.REACT_APP_BACKEND_URL
 
   // Пагинация данных
   const pagination = (data) => {
@@ -34,12 +34,11 @@ const RightContainerCreatedModeles = (props) => {
   // Загружаем данные с сервера
   useEffect(() => {
     setuserToken(JSON.parse(localStorage.getItem('dataUser')).token)
-    axios.get('http://localhost:8080/word-learner/api/v1/modules/created', {
+    axios.get(`${SERVER_URL}word-learner/api/v1/modules/created`, {
       headers: {
         'Authorization': `Bearer ${userToken}`
       }
     }).then(({ data }) => {
-      console.log(data);
       const paginatedData = pagination(data); // Пагинируем данные
       setPosts(paginatedData); // Сохраняем все данные
       setFilteredPosts(paginatedData); // Изначально отображаем все данные

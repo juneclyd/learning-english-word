@@ -21,6 +21,7 @@ const PersonalAccount = () => {
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [selected, setSelected] = useState(null);
+    
 
     const navigate = useNavigate();
 
@@ -58,8 +59,9 @@ const PersonalAccount = () => {
     };
 
     const saveDataUser = () => {
+        const SERVER_URL = process.env.REACT_APP_BACKEND_URL
         setuserToken(JSON.parse(localStorage.getItem('dataUser'))?.token)
-        axios.patch('http://localhost:8080/word-learner/api/v1/profile', 
+        axios.patch(`${SERVER_URL}word-learner/api/v1/profile`, 
             {
                 "username" : userName,
                 "email" : email
@@ -85,9 +87,11 @@ const PersonalAccount = () => {
     }
 
     useEffect(() => {
+        const SERVER_URL = process.env.REACT_APP_BACKEND_URL
+        console.log(SERVER_URL)
         setuserToken(JSON.parse(localStorage.getItem('dataUser'))?.token)
         if (userToken) {
-            axios.get('http://localhost:8080/word-learner/api/v1/profile', {
+            axios.get(`${SERVER_URL}word-learner/api/v1/profile`, {
                 headers: {
                     'Authorization': `Bearer ${userToken}`
                 }
@@ -106,7 +110,6 @@ const PersonalAccount = () => {
 
     const checkStudy = (achievementName) => {
         if (data && data.achievements) {
-            console.log(data.achievements.some((el) => el.name === achievementName))
             return data.achievements.some((el) => el.name === achievementName);
         }
         return false;

@@ -14,6 +14,8 @@ const RightContainerCreatedModeles = () => {
 
   const [userRole, setUserRole] = useState(JSON.parse(localStorage.getItem('dataUser')).role);
   const [userToken, setuserToken] = useState(JSON.parse(localStorage.getItem('dataUser'))?.token);
+
+  const SERVER_URL = process.env.REACT_APP_BACKEND_URL
   const navigate = useNavigate();
 
   // Пагинация данных
@@ -33,7 +35,7 @@ const RightContainerCreatedModeles = () => {
   useEffect(() => {
     setuserToken(JSON.parse(localStorage.getItem('dataUser'))?.token)
     setIsLoading(true);
-    axios.get('http://localhost:8080/word-learner/api/v1/modules/completed', {
+    axios.get(`${SERVER_URL}word-learner/api/v1/modules/completed`, {
       headers: {
         'Authorization': `Bearer ${userToken}`,
       },
