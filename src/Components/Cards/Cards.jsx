@@ -8,6 +8,9 @@ import FullModules from './img/FullModules.png'
 import UserImg from './img/user.png';
 import axios from 'axios';
 import './Cards.css';
+import Left from './img/left.png';
+import Right from './img/right.png'
+import Cat from './img/cat.png'
 
 const Cards = () => {
     const userRole = JSON.parse(localStorage.getItem('dataUser')).role;
@@ -21,6 +24,7 @@ const Cards = () => {
     const [data, setData] = useState(null);
     const [page, setPage] = useState(1);
     const [rightAnswer, setRightAnswer] = useState(0);
+    const [notRightAnswer, setNotRightAnswer] = useState(0);
     const [flagModalWindow, setFlagModalWindow] = useState(false);
     const SERVER_URL = process.env.REACT_APP_BACKEND_URL
 
@@ -35,24 +39,24 @@ const Cards = () => {
             setButtonAdmin(false);
         }
     }, [userRole]);
-    const clickNextTask = () => {
+    // const clickNextTask = () => {
         
-        if (page == data.questions.length) {
-            setFlagModalWindow(true);
-        } else if(flag === false) {
-            setPage(page+1);
-            setFlag(true);
-            setColorCorrect([])
-        }
-        console.log(page)
-        console.log(rightAnswer)
-    }
+    //     if (page == data.questions.length) {
+    //         setFlagModalWindow(true);
+    //     } else if(flag === false) {
+    //         setPage(page+1);
+    //         setFlag(true);
+    //         setColorCorrect([])
+    //     }
+    //     console.log(page)
+    //     console.log(rightAnswer)
+    // }
 
     const clickExit = () => {
         axios.post(`${SERVER_URL}word-learner/api/v1/submissions`, {
             'correct': rightAnswer,
             'moduleId': idModule,
-            'type': 'TEST'
+            'type': 'CARDS'
         }, 
         {
             headers: {
@@ -72,26 +76,34 @@ const Cards = () => {
         setStateBurger(!stateBurger);
     };
 
-    const clickOption = (correct, index) => {
-        if (flag) {
-            const updatedColorCorrect = [...colorCorrect];
-            updatedColorCorrect[index] = correct; 
-            setColorCorrect(updatedColorCorrect);
-            if(correct === true) {
-                setRightAnswer(rightAnswer+1)
-            }
-            setFlag(false); 
+    const trueAnswers = () => {
+        setRightAnswer(rightAnswer+1);
+        if(page == data.cards.length) {
+            setFlagModalWindow(true);
+        } else {
+            setPage(page+1);
         }
-    };
+    }
+    const notTrueAnswers = () => {
+        setNotRightAnswer(notRightAnswer+1);
+        if(page == data.cards.length) {
+            setFlagModalWindow(true);
+        } else {
+            setPage(page+1);
+        }
+    }
+
 
     useEffect(() => {
-        axios.get(`${SERVER_URL}/word-learner/api/v1/tests/${idModule}`, {
+        console.log(idModule);
+        console.log(userToken);
+        axios.get(`${SERVER_URL}word-learner/api/v1/cards/${idModule}`, {
             headers: {
                 'Authorization': `Bearer ${userToken}`
             }
         })
         .then(response => {
-            console.log(response)
+            console.log(response.data)
             setData(response.data);
             setTestInfoTitle(response.data.title);
             setTestInfoPage(response.data.questionCount);
@@ -113,7 +125,7 @@ const Cards = () => {
                         <img src={FullModules} className='header-left-buttons-img'/>
                         <span className='header-left-buttons-text'>Список модулей</span>
                     </Link>
-                    <Link to={`/createdModeles/:${userRole}`} className='header-left-button'>
+                    <Link to={`/passedModule/:${userRole}`} className='header-left-button'>
                         <img src={DoneModuleImg} className='header-left-buttons-img' />
                         <span className='header-left-buttons-text'>Пройденные модули</span>
                     </Link>
@@ -129,42 +141,34 @@ const Cards = () => {
             </header>
 
             <div className="test-info">
-                <h1 className="test-info-title">{testInfoTitle}</h1>
-                <span className="test-info-page">{page}/{testInfoPage}</span>
+                <h1 className="test-info-title">Карточки «{testInfoTitle}»</h1>
                 <div className="container-test-info">
-                    {data && data.questions && data.questions[page - 1] ? (  // Проверка на наличие данных
-                        <div className="task-test">
-                            <h1 className="task-test-title">{data.questions[page - 1].question}</h1>
-                            <div className="container-task-test">
-                                {data.questions[page - 1].options.map((el, index) => (
-                                    <div
-                                        key={index} 
-                                        style={colorCorrect[index] === true ? { backgroundColor: '#4CAF50', color: 'white' }
-                                            : colorCorrect[index] === false ? { backgroundColor: '#f44336', color: 'white' } : {}}
-                                        onClick={() => clickOption(el.correct, index)} 
-                                        className={`task-test-option ${!flag && 'disabled-option'}`} 
-                                    >
-                                        {el.option}
-                                    </div>
-                                ))}
-                            </div>
+                    {data  ? (  // Проверка на наличие данных
+                        <div className='cards-task-info'>
+                            <img src={`${data.cards[page-1].cardImg}`}/>
+                            <div className="cards-task-info-text">{data.cards[page-1].wordEn}</div>
                         </div>
                     ) : (
-                        <p>Загрузка данных...</p>  // Можем выводить текст, если данных нет
+                        <p>Загрузка данных...</p>  // Можем выводить текст, если данных нет 
                     )}
                 </div>
-                <div className="next-task" onClick={clickNextTask}><span>Следующее слово</span></div>
+                <div className="next-task3" >
+                    <span onClick={notTrueAnswers}>Пропустить</span>
+                    <div className='right-light-buttons'>
+                        <img onClick={trueAnswers} src={Right}/>
+                    </div>
+                </div>
             </div>
-            {/* <div className='modal-window-test' style={flagModalWindow ? {display: 'flex'} : {display: 'none'}}>
+            <div className='modal-window-test' style={flagModalWindow ? {display: 'flex'} : {display: 'none'}}>
                     <div className='modal-window-test-info'>
                         <h1>Результаты</h1>
                         <div>
                             <span className='modal-window-test-info-text'><p>Верно: </p>  {rightAnswer} слов</span>
-                            <span className='modal-window-test-info-text'><p>Неверно: </p>   {(page) - rightAnswer} слов</span>
+                            <span className='modal-window-test-info-text'><p>Неверно: </p>   {notRightAnswer} слов</span>
                         </div>
                         <div className="exit-task" onClick={clickExit}><span className='exit-task-text'>Выйти</span></div>
                     </div>
-            </div> */}
+            </div>
 
         </div>
     );

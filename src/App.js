@@ -3,7 +3,6 @@ import CreateModel from './Components/CreateModel/createModel'
 import FullModules from './Components/FullModule/CreatedModeles';
 import Login from './Components/login/Login';
 import Main from './Components/Main/Main';
-import Module from './Components/Module/Module';
 import PersonalAccount from './Components/PersonalAccount/PersonalAccount';
 import PassedModule from './Components/PassedModule/CreatedModeles'
 import Register from './Components/rigister/register';
@@ -29,7 +28,6 @@ function App() {
           <Route path='/passedModule/:role' element={<PassedModule/>}/>
           <Route path='/moduleOverview/:role' element={<ModuleOverview/>}/>
           <Route path='/match' element={<Match/>}/>
-          <Route path='/module' element={<Module/>}/>
           <Route path='/test' element={<Test/>}/>
           <Route path='/cards' element={<Cards/>}/>
         </Routes>

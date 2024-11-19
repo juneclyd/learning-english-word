@@ -39,6 +39,7 @@ const RightContainerCreatedModeles = () => {
         'Authorization': `Bearer ${userToken}`
       }
     }).then(({ data }) => {
+      console.log(data);
       const paginatedData = pagination(data); // Пагинируем данные
       setPosts(paginatedData); // Сохраняем все данные
       setFilteredPosts(paginatedData); // Изначально отображаем все данные

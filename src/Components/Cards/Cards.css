@@ -56,15 +56,25 @@
     padding-left: 2vw;
     cursor: pointer;
 }
-.next-task {
-    width: 14vw;
-    height: 4vw;
+.next-task3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 69vw;
+}
+.right-light-buttons img {
+    width: 2.4vw;
+    margin-right: 10px;
+}
+.next-task3 span {
+    width: 8vw;
+    height: 3vw;
     background-color: #3877EE;
     color: white;
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-self: center;
-    font-size: 0.8vw;
+    font-size: 1vw;
     font-family: "Nunito", serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -74,11 +84,10 @@
     margin-top: 3vw;
     margin-bottom: 3vw;
     cursor: pointer;
-}
-.next-task span {
     text-align: center;
-    width: 100%;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 .modal-window-test {
     width: 100%;
@@ -146,67 +155,48 @@
     height: 2vw;
 }
 
+
+
+
+
+
+.cards-task-info {
+    width: 69vw;
+    height: 27vw;
+    border: 1px solid #3877EE;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.cards-task-info img{
+    height: 14vw;
+    width: 23vw;
+}
+
+
+
+
+
+
+
+
+
 @media (max-width: 480px) {
     .test-info {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        margin-top: 78px;
     }
     .test-info-title {
-        font-size: 20px;
-        margin-right: 174px;
-        margin-top: 37px;
+        font-size: 24px;
+        margin-bottom: 30px;
     }
-    .test-info-page {
-        font-size: 16px;
-        margin-right: 251px;
-        margin-top: 20px;
-    }
-    .task-test-title {
-        font-size: 16px;
-        margin: 20px 0;
-    }
-    .container-task-test {
-        display: flex;
-        flex-direction: column;
-    }
-    .task-test-option {
+    .cards-task-info {
         width: 280px;
-        height: 70px;
-        font-size: 16px;
-        border-radius: 4px;
-        margin-bottom: 15px;
+        height: 240px;
     }
-    .next-task {
-        width: 149px;
-        height: 38px;
-        font-size: 16px;
-        border-radius: 4px;    
-        margin-right: 140px;
-    }
-    .modal-window-test-info {
-        width: 280px;
-        height: 200px;
-        border-radius: 4px;
-    }
-    .modal-window-test-info h1 {
-        font-size: 20px;
-        margin-top: 20px;
-    }
-    .modal-window-test-info-text {
-        font-size: 16px;
-        margin-top: 20px;
-    }
-    .exit-task {
-        width: 149px;
-        height: 38px;
-        font-size: 16px;
-        margin-top: 20px;
-        border-radius: 4px;
-    }
-    .exit-task-text {
-        height: 100%;
+    .cards-task-info img{
+        width: 216px;
+        height: 111px;
     }
 }

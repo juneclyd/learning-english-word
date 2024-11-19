@@ -101,6 +101,7 @@ const PersonalAccount = () => {
                 setUserNamePlaceholder(response.data.username);
                 setEmailPlaceholder(response.data.email);
                 console.log(response.data); 
+                console.log(response.data.achievements.LEARNING);
             })
             .catch(error => {
                 console.error('Error fetching profile data:', error);
@@ -199,38 +200,38 @@ const PersonalAccount = () => {
                 <div className='right-user-actions-achievements'>
                     <span>Учеба</span>
                     <div className='right-user-actions-achievements-container'>
-                        {study.map((el, index) => (
+                        {data.achievements.LEARNING.map((el, index) => (
                             <div
                             key={index}
-                            className={`hexagon ${checkStudy(el) ? 'active-achievement' : ''}`}
+                            className={`hexagon ${el.achieved === true ? 'active-achievement' : ''}`}
                             style={{
-                                background: checkStudy(el) ? "#3877EE" : "#3877EE99"
+                                background: el.achieved === true ? "#3877EE" : "#3877EE99"
                             }}
-                            >{el}</div>
+                            >{el.name}</div>
                         ))}
                     </div>
                     <span>Цепочка занятий</span>
                     <div className='right-user-actions-achievements-container'>
-                        {chain.map((el, index) => (
+                        {data.achievements.LEARNING.map((el, index) => (
                             <div
                             key={index}
-                            className={`hexagon ${checkStudy(el) ? 'active-achievement' : ''}`}
+                            className={`hexagon ${el.achieved === true ? 'active-achievement' : ''}`}
                             style={{
-                                background: checkStudy(el) ? "#3877EE" : "#3877EE99"
+                                background: el.achieved === true ? "#3877EE" : "#3877EE99"
                             }}
-                            >{el}</div>
+                            >{el.name}</div>
                         ))}
                     </div>
                     <span>Изучено модулей</span>
                     <div className='right-user-actions-achievements-container'>
-                        {module.map((el, index) => (
+                        {data.achievements.LEARNING.map((el, index) => (
                             <div
                             key={index}
-                            className={`hexagon ${checkStudy(el) ? 'active-achievement' : ''}`}
+                            className={`hexagon ${el.achieved === true ? 'active-achievement' : ''}`}
                             style={{
-                                background: checkStudy(el) ? "#3877EE" : "#3877EE99"
+                                background: el.achieved === true ? "#3877EE" : "#3877EE99"
                             }}
-                            >{el}</div>
+                            >{el.name}</div>
                         ))}
                     </div>
                 </div>

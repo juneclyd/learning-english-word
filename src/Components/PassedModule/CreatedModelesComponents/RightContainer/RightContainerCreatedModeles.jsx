@@ -15,6 +15,8 @@ const RightContainerCreatedModeles = () => {
   const [userRole, setUserRole] = useState(JSON.parse(localStorage.getItem('dataUser')).role);
   const [userToken, setuserToken] = useState(JSON.parse(localStorage.getItem('dataUser'))?.token);
 
+  const [data, setData] = useState(null);
+
   const SERVER_URL = process.env.REACT_APP_BACKEND_URL
   const navigate = useNavigate();
 
@@ -41,6 +43,8 @@ const RightContainerCreatedModeles = () => {
       },
     })
     .then(({ data }) => {
+      console.log(data)
+      setData(data)
       const paginatedData = pagination(data.modules || []);  // Пагинируем данные
       setPosts(paginatedData);  // Сохраняем все данные
       setFilteredPosts(paginatedData);  // Изначально отображаем все данные
@@ -48,10 +52,9 @@ const RightContainerCreatedModeles = () => {
     })
     .catch((error) => {
       console.error("Ошибка при загрузке данных:", error);
-    })
-    .finally(() => {
+    }).finally( () => {
       setIsLoading(false);
-    });
+    })
   }, [userToken]);
 
   // Фильтрация данных на основе поискового запроса
@@ -85,7 +88,7 @@ const RightContainerCreatedModeles = () => {
   };
 
   // Проверка, если в filteredPosts нет данных, показывать сообщение "Нет данных для отображения"
-  const isEmpty = filteredPosts.length === 0;
+  const isEmpty = data.length === 0;
 
   return (
     <div>
@@ -116,14 +119,14 @@ const RightContainerCreatedModeles = () => {
               {isEmpty ? (
                 <div style={{marginTop: '2vw' }}>Нет пройденных модулей</div>
               ) : (
-                filteredPosts[page - 1]?.map((post) => (
+                data.map((post) => (
                   <div key={post.objectID} className="block-created-module">
                     <span className="block-created-module-title">{post.title}</span>
                     <div className="block-created-module-date">
-                      <span className="block-created-module-info">{post.wordCount} cлов</span>
+                      <span className="block-created-module-info">{post.result}/{post.wordCount} cлов</span>
                       <div className="block-created-module-line"></div>
                       <span className="block-created-module-info">
-                        Создано: {new Date(post.createdAt).toLocaleDateString('ru-RU', {
+                        Создано: {new Date(post.lastSubmission).toLocaleDateString('ru-RU', {
                           day: '2-digit',
                           month: '2-digit',
                           year: 'numeric',

@@ -107,6 +107,7 @@ const CreateModel = () => {
           cardImg: word.cardImg, 
         }))
       }));
+      console.log(wordsRender)
   
       formData.append('cardImages', null);
 
@@ -116,13 +117,20 @@ const CreateModel = () => {
         console.log(i + " " + el)
       })
 
-      axios.post(`${SERVER_URL}word-learner/api/v1/modules`, formData, {
+      axios.post(`${SERVER_URL}word-learner/api/v1/modules`, 
+      {
+        "title": moduleTitle,
+        "description": moduleDescription,
+        "wordCount":  wordsRender.length,
+        "words": wordsRender
+      }, {
         headers: {
           "Authorization": `Bearer ${userToken}`,
         }
       })
       .then(response => {
         console.log('Module saved successfully:', response.data);
+        setWordsRender([])
       })
       .catch(error => {
         console.error('Error saving module:', error);
