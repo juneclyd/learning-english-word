@@ -166,7 +166,7 @@ const Match = () => {
       <div className="match-info">
         <h1 className="match-info-title">Подбор «{matchInfoTitle}»</h1>
         <div className="container-match-info">
-          <div>
+          <div className='container-match-info-block-input'>
             {data.enWords.map((el, index) => (
               <div key={index} >
                 <input onChange={(e) => changeAnswer(e, index)} className="container-match-info-input" type="number" placeholder='Введите номер'/>

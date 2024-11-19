@@ -70,6 +70,7 @@ const RightContainerCreatedModeles = () => {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               variant="outlined"
+              placeholder="Введите название модуля"
           />
         </div>
         <div className="full-modules-title-button">

@@ -29,7 +29,7 @@
     align-items:center;
 }
 .container-match-info-text-block {
-    height: 34vw;
+    
 }
 .container-match-info-input {
     height: 2.5vw;
@@ -202,6 +202,8 @@
         width: 52%;
         display: grid;
         grid-template-columns: 122px auto;
+        grid-template-rows: 266px 630px;
+        margin-top: 118px;
     }
     .container-match-info-input {
         height: 32px;
@@ -217,7 +219,7 @@
         width: 156px;
     }
     .container-match-info-text-block1 {
-        margin-bottom: 280px;
+        margin-top: 30px;
     }
     .container-match-info-text-block2 {
         margin-top: 25px;
@@ -236,7 +238,6 @@
         font-size: 16px;
         border-radius: 4px;
         margin-right: 72px;
-        margin-top: 322px;
     }
 }
 
