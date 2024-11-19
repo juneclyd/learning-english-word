@@ -18,7 +18,6 @@
 }
 
 
-
 .header-left-container-buttons {
     display: flex;
     flex-direction: column;
@@ -55,19 +54,4 @@
 
 .header-left-button img {
     width: 1.6vw;
-}
-
-@media (max-width: 480px) {
-    .header-left-logo {
-        width: 36px;
-        height: 36px;
-    }
-    .created-modules {
-        display: flex;
-        flex-direction: column;
-    }
-    .created-modules-title {
-        font-size: 20px;
-        margin-left: 20px;
-    }
 }

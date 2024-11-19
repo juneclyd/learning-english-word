@@ -8,9 +8,9 @@ const RightContainerCreatedModeles = (props) => {
   console.log(props);
   const [posts, setPosts] = useState([]); // Все данные
   const [filteredPosts, setFilteredPosts] = useState([]); // Отфильтрованные данные
-  const [query, setQuery] = useState(""); // Поисковый запрос
-  const [page, setPage] = useState(1); // Текущая страница
-  const [pageQty, setPageQty] = useState(0); // Количество страниц
+  const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
+  const [pageQty, setPageQty] = useState(0);
   const [userRole, setUserRole] = useState(JSON.parse(localStorage.getItem('dataUser')).role);
   const [userToken, setuserToken] = useState(JSON.parse(localStorage.getItem('dataUser'))?.token);
   const navigate = useNavigate();
@@ -31,34 +31,34 @@ const RightContainerCreatedModeles = (props) => {
     return finishResultData;
   };
 
-  // Загружаем данные с сервера
+  // Делаем запрос к серверу для получения всех данных
   useEffect(() => {
-    setuserToken(JSON.parse(localStorage.getItem('dataUser')).token)
-    axios.get('http://localhost:8080/word-learner/api/v1/modules/created', {
+    setuserToken(JSON.parse(localStorage.getItem('dataUser')))
+    axios.get('http://localhost:8080/word-learner/api/v1/modules', {
       headers: {
         'Authorization': `Bearer ${userToken}`
       }
-    }).then(({ data }) => {
+    })
+    .then(({ data }) => {
       console.log(data);
-      const paginatedData = pagination(data); // Пагинируем данные
-      setPosts(paginatedData); // Сохраняем все данные
-      setFilteredPosts(paginatedData); // Изначально отображаем все данные
+      setPosts(data); // Сохраняем все данные
+      setFilteredPosts(data); // Изначально отображаем все данные
       setPageQty(Math.ceil(data.length / 9)); // Обновляем количество страниц
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.error("Ошибка при загрузке данных:", error);
     });
   }, [userToken]);
 
-  // Фильтруем данные на основе поискового запроса
+  // Фильтрация данных на основе поискового запроса
   useEffect(() => {
-    const filtered = posts.flat().filter((post) =>
+    // Фильтруем данные по запросу
+    const filtered = posts.filter((post) =>
       post.title.toLowerCase().includes(query.toLowerCase()) ||
       post.wordCount.toString().includes(query)
     );
-    const paginatedFilteredData = pagination(filtered);
-    setFilteredPosts(paginatedFilteredData); // Обновляем отфильтрованные данные
-    setPageQty(paginatedFilteredData.length); // Обновляем количество страниц для фильтрованных данных
-    setPage(1); // Сбрасываем страницу на 1 при изменении запроса
+    setFilteredPosts(filtered); // Обновляем отфильтрованные данные
+    setPage(1); // Сбрасываем страницу на 1 при новом запросе
   }, [query, posts]);
 
   // Переход к созданию нового модуля
@@ -77,47 +77,45 @@ const RightContainerCreatedModeles = (props) => {
   return (
     <div>
       <Container sx={{ marginTop: 5, maxWidth: 0 }} maxWidth="md">
-        {/* Поле для поиска */}
         <div className="full-modules-textField">
           <TextField
               fullWidth
               value={query}
               onChange={(event) => setQuery(event.target.value)} // Обновляем запрос
               variant="outlined"
-              placeholder="Введите название модуля"
+              // placeholder="Введите название модуля"
           />
         </div>
-
-        <div className="created-modules-title-button">
-          <h1 className="created-modules-title">Созданные модули</h1>
-          <div onClick={clikCreateModule} className="created-modules-button">Создать модуль</div>
+        <div className="full-modules-title-button">
+          <h1 className="full-modules-title">Список модулей</h1>
         </div>
 
         <Stack spacing={2}>
-          <div className="container-created-modules">
-            {filteredPosts[page - 1]?.map((post) => (
-              <div key={post.objectID} href={post.url} className="block-created-module">
-                <span className="block-created-module-title">{post.title}</span>
-                <div className="block-created-module-date">
-                  <span className="block-created-module-info">{post.wordCount} cлов</span>
-                  <div className="block-created-module-line"></div>
-                  <span className="block-created-module-info">Создано: {new Date(post.createdAt).toLocaleDateString('ru-RU', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
-                  })}
+          <div className="container-full-modules">
+            {filteredPosts.slice((page - 1) * 9, page * 9).map((post) => (
+              <div key={post.objectID} className="block-full-module">
+                <span className="block-full-module-title">{post.title}</span>
+                <div className="block-full-module-date">
+                  <span className="block-full-module-info">{post.wordCount} слов</span>
+                  <div className="block-full-module-line"></div>
+                  <span className="block-full-module-info">
+                    Создано: {new Date(post.createdAt).toLocaleDateString('ru-RU', {
+                      day: '2-digit',
+                      month: '2-digit',
+                      year: 'numeric',
+                    })}
                   </span>
                 </div>
-                <div onClick={() => clikGoOver(post.id)} className="block-created-module-cell">
+                <div onClick={() => clikGoOver(post.id)} className="block-full-module-cell">
                   Перейти
                 </div>
               </div>
             ))}
           </div>
 
-          {!!pageQty && (
+          {!!filteredPosts.length && (
             <Pagination
-              count={pageQty}
+              count={Math.ceil(filteredPosts.length / 9)}
               page={page}
               onChange={(_, num) => setPage(num)} // Обработчик для изменения страницы
               hidePrevButton

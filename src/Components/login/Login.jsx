@@ -69,7 +69,7 @@ const Login = () => {
             setPassword('');
             setEmail('');
             // После успешного входа перенаправляем на страницу с моделями
-            navigate(`/createdModeles/${userRole}`);
+            navigate(`/fullModules/${userRole}`);
 
         } catch (error) {
             setPassword('');

@@ -155,7 +155,7 @@
 .right-user-actions {
     width: 71vw;
     height: 255px;
-    height: 17vw;
+    height: 20.5vw;
     padding: 1.4vw;
     display: flex;
     background-color: #F6F7FB;
@@ -253,6 +253,9 @@
     margin-bottom: 4vw;
     background-color: #F6F7FB;
     padding-left: 1vw;
+    margin-top: 2vw;
+    border-radius: 0.6vw;
+    padding-bottom: 2vw;
 }
 .right-user-actions-achievements span {
     font-size: 1.1vw;
@@ -285,8 +288,86 @@
     font-style: normal;
     cursor: pointer;
     margin-top: 2vw;
+    margin-bottom: 2vw;
 }
-
+.--rdp-day_button-border-radius {
+    border: none
+}
+.rdp-selected {
+    background-color: #3877EE;
+    color: white;
+    border-radius: 0.5vw;
+}
+.rdp-day_button {
+    font-size: 1.1vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    line-height: 1.5vw;
+    font-style: normal;
+}
+.rdp-weekday {
+    font-size: 1.1vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    line-height: 1.5vw;
+    font-style: normal;
+    color: #3877EE;
+}
+.rdp-chevron {
+    fill: #3877EE;
+}
+.rdp-caption_label {
+    font-size: 1.3vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    line-height: 1.5vw;
+    font-style: normal;
+}
+.rdp-root {
+    --rdp-accent-color: blue;
+    --rdp-accent-background-color: #f0f0ff;
+    --rdp-day-height: 2.75vw;
+    --rdp-day-width: 2.75vw;
+    --rdp-day_button-border-radius: 100%;
+    /* --rdp-day_button-border: 2px solid transparent; */
+    --rdp-day_button-height: var(--rdp-day-height);
+    --rdp-day_button-width: var(--rdp-day-width);
+    --rdp-selected-border: 0.2vw solid var(--rdp-accent-color);
+    --rdp-disabled-opacity: 0.5;
+    --rdp-outside-opacity: 0.75;
+    --rdp-today-color: var(--rdp-accent-color);
+    --rdp-dropdown-gap: 0.5vw;
+    --rdp-months-gap: 2vw;
+    --rdp-nav_button-disabled-opacity: 0.5;
+    --rdp-nav_button-height: 2.25vw;
+    --rdp-nav_button-width: 2.25vw;
+    --rdp-nav-height: 2.75vw;
+    --rdp-range_middle-background-color: var(--rdp-accent-background-color);
+    --rdp-range_middle-foreground-color: white;
+    --rdp-range_middle-color: inherit;
+    --rdp-range_start-color: white;
+    --rdp-range_start-background: linear-gradient(var(--rdp-gradient-direction), transparent 50%, var(--rdp-range_middle-background-color) 50%);
+    --rdp-range_start-date-background-color: var(--rdp-accent-color);
+    --rdp-range_end-background: linear-gradient(var(--rdp-gradient-direction), var(--rdp-range_middle-background-color) 50%, transparent 50%);
+    --rdp-range_end-color: white;
+    --rdp-range_end-date-background-color: var(--rdp-accent-color);
+    --rdp-week_number-border-radius: 100%;
+    --rdp-week_number-border: 0.2vw solid transparent;
+    --rdp-week_number-height: var(--rdp-day-height);
+    --rdp-week_number-opacity: 0.75;
+    --rdp-week_number-width: var(--rdp-day-width);
+    --rdp-weeknumber-text-align: center;
+    --rdp-weekday-opacity: 0.75;
+    --rdp-weekday-padding: 0.5vw 0vw;
+    --rdp-weekday-text-align: center;
+    --rdp-gradient-direction: 90deg;
+}
+.rdp-selected .rdp-day_button {
+    border:none;
+}
 
 
 @media (max-width: 480px) {
@@ -301,7 +382,7 @@
     }
     .header-left-container-buttons {
         background-color: white;
-        height: 100%;
+        height: 37%;
         width: 248px;
         margin: 0;
     }
@@ -385,5 +466,109 @@
         line-height: 20px;
         width: 177px;
     }
-
+    .rdp-root {
+        --rdp-accent-color: blue;
+        --rdp-accent-background-color: #f0f0ff;
+        --rdp-day-height: 7.75vw;
+        --rdp-day-width: 6.75vw;
+        --rdp-day_button-border-radius: 100%;
+        /* --rdp-day_button-border: 2px solid transparent; */
+        --rdp-day_button-height: var(--rdp-day-height);
+        --rdp-day_button-width: var(--rdp-day-width);
+        --rdp-selected-border: 0.2vw solid var(--rdp-accent-color);
+        --rdp-disabled-opacity: 0.5;
+        --rdp-outside-opacity: 0.75;
+        --rdp-today-color: var(--rdp-accent-color);
+        --rdp-dropdown-gap: 0.5vw;
+        --rdp-months-gap: 2vw;
+        --rdp-nav_button-disabled-opacity: 0.5;
+        --rdp-nav_button-height: 2.25vw;
+        --rdp-nav_button-width: 2.25vw;
+        --rdp-nav-height: 2.75vw;
+        --rdp-range_middle-background-color: var(--rdp-accent-background-color);
+        --rdp-range_middle-foreground-color: white;
+        --rdp-range_middle-color: inherit;
+        --rdp-range_start-color: white;
+        --rdp-range_start-background: linear-gradient(var(--rdp-gradient-direction), transparent 50%, var(--rdp-range_middle-background-color) 50%);
+        --rdp-range_start-date-background-color: var(--rdp-accent-color);
+        --rdp-range_end-background: linear-gradient(var(--rdp-gradient-direction), var(--rdp-range_middle-background-color) 50%, transparent 50%);
+        --rdp-range_end-color: white;
+        --rdp-range_end-date-background-color: var(--rdp-accent-color);
+        --rdp-week_number-border-radius: 100%;
+        --rdp-week_number-border: 0.2vw solid transparent;
+        --rdp-week_number-height: var(--rdp-day-height);
+        --rdp-week_number-opacity: 0.75;
+        --rdp-week_number-width: var(--rdp-day-width);
+        --rdp-weeknumber-text-align: center;
+        --rdp-weekday-opacity: 0.75;
+        --rdp-weekday-padding: 0.5vw 0vw;
+        --rdp-weekday-text-align: center;
+        --rdp-gradient-direction: 90deg;
+    }
+    .rdp-day_button {
+        font-size: 16px;
+    }
+    .rdp-weekday {
+        font-size: 16px;
+    }
+    .rdp-caption_label {
+        font-size: 16px;
+        margin-bottom: 2px;
+    }
+    .rdp-month_caption {
+        height: 40px;
+    }
+    .rdp-nav {
+        height: 40px;
+    }
+    .right-user-actions-achievements span {
+        font-size: 16px;
+        margin: 28px 0 0 20px;
+    }
+    .right-user-actions-achievements {
+        width: 280px;
+        height: 1666px;
+        margin-left: 45px;
+    }
+    .right-user-actions-achievements-container {
+        margin-top: 40px;
+        width: 270px;
+        height: 492px;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 123px auto;
+        grid-template-rows: 131px 126px 126px;
+    }
+    .hexagon {
+        width: 95px;
+        height: 57px;
+        font-size: 16px;
+        line-height: 15px;
+    }
+    .hexagon:before, .hexagon:after {
+        border-left: 52px solid transparent;
+        border-right: 55px solid transparent;
+    }
+    .hexagon:before {
+        top: -30px;
+        border-bottom: 30px solid #3877EE99;
+    }
+    .hexagon:after {
+        bottom: -31px;
+        border-top: 31px  solid #3877EE99;
+    }
+    .exit {
+        width: 152px;
+        height: 50px;
+        font-size: 16px;
+        border-radius: 8px;
+        margin-left: 45px;
+    }
 }
+
+@media (max-width: 363px) {
+    .right-user-data h1, .title-data, .right-user-info, .right-user-actions, .right-user-actions-achievements, .exit {
+        margin-left: 20px;
+    }
+}
+

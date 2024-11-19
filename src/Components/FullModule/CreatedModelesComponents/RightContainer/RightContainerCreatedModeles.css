@@ -1,11 +1,11 @@
-.created-modules-title-button {
+.full-modules-title-button {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 6vw;
     margin-bottom: 2vw;
 }
-.created-modules-button {
+.full-modules-button {
     width: 8vw;
     height: 1.5vw;
     text-decoration: none;
@@ -24,7 +24,7 @@
     justify-content: center;
     align-items:center;
 }
-.created-modules-title {
+.full-modules-title {
     font-size: 1.7vw;
     color: #2D3748;
     font-family: "Nunito", serif;
@@ -33,22 +33,22 @@
     line-height: 1.5vw;
     font-style: normal;
 }
-.container-created-modules {
+.container-full-modules {
     display: grid;
     grid-template-columns: 19.5vw 19.5vw auto;
     grid-template-rows: 13vw 13vw auto;
 }
-.block-created-module {
+.block-full-module {
     width: 16.2vw;
     height: 10.2vw;
     background-color: #F6F7FB;
     padding: 1vw;
     border-radius: 0.6vw;
 }
-.container-created-modules a{
+.container-full-modules a{
     text-decoration: none;
 }
-.block-created-module-title {
+.block-full-module-title {
     font-size: 1.3vw;
     color: #3877EE;
     font-family: "Nunito", serif;
@@ -57,18 +57,18 @@
     line-height: 1.5vw;
     font-style: normal;
 }
-.block-created-module-line {
+.block-full-module-line {
     width: 0.1vw;
     height: 1.2vw;
     background-color: #2D3748;
     margin: 0 0.6vw;
 }
-.block-created-module-date {
+.block-full-module-date {
     display: flex;
     align-items: center;
     margin: 2vw 0;
 }
-.block-created-module-info {
+.block-full-module-info {
     font-size: 1vw;
     color: #2D3748;
     font-family: "Nunito", serif;
@@ -77,8 +77,8 @@
     line-height: 1.5vw;
     font-style: normal;
 }
-.block-created-module-cell {
-    font-size: 0.8vw;
+.block-full-module-cell {
+    font-size: 0.9vw;
     color: white;
     font-family: "Nunito", serif;
     font-optical-sizing: auto;
@@ -95,6 +95,11 @@
     cursor: pointer;
 }
 
+.full-modules-textField {
+    width: 58vw;
+    display: flex;
+    justify-content: flex-end;
+}
 .full-modules-textField .css-cmpglg-MuiFormControl-root-MuiTextField-root{
     width: 28vw;
     border: 0.1vw solid #3877EE;
@@ -109,63 +114,72 @@
     font-weight: 600;
     line-height: 1.5vw;
     font-style: normal;
-    height: 1vw;
+    height: 2vw;
 }
 
+
 @media (max-width: 480px) {
-    .created-modules-title {
+    
+    .full-modules-textField .css-cmpglg-MuiFormControl-root-MuiTextField-root {
+        width: 280px;
+        border-radius: 8px;
+        position: static;
+    }
+    .full-modules-textField .css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root {
         font-size: 16px;
-        width: 237px;;
-    }
-    .created-modules-title-button {
-        width: 228px;
-        display: ruby;
-        height: 30px;
-        flex-direction: column;
-    }
-    .created-modules-button {
-        width: 100px;
-        border-radius: 4px;
-        height: 27px;
-        font-size: 12px;
-        margin-top: 11px;
+        height: 38px;
+        position: static;
     }
     .full-modules-textField {
+        width: 280px;
+        position: static;
+        margin-top: 62px;
+    }
+    .css-cmpglg-MuiFormControl-root-MuiTextField-root {
+        position: static;
+    }
+    .full-modules-title {
+        font-size: 16px;
+        line-height: 20px;
+        width: 144px;
+    }
+    .full-modules-title-button {
+        margin-top: 20px;
         margin-bottom: 20px;
+        width: 144px;
     }
-    .container-created-modules {
-        display: block;
+    .container-full-modules {
+        flex-direction: column;
+        display: flex;
     }
-    .block-created-module {
+    .block-full-module {
         width: 280px;
         height: 177px;
         margin-bottom: 19px;
         border-radius: 8px;
         padding-top: 20px;
     }
-    .block-created-module-title {
+    .block-full-module-title {
         font-size: 20px;
         margin-left: 20px;
-        margin-top: 10px;
     }
-    .block-created-module-line {
-        display: none;
-    }
-    .block-created-module-date {
-        display: flex;
-        flex-direction: column;
-        align-items:baseline;
-    }
-    .block-created-module-info {
-        margin-bottom: 15px;
+    .block-full-module-info {
         font-size: 16px;
-        margin-left: 20px;
     }
-    .block-created-module-cell {
+    .block-full-module-line {
+        width: 2px;
+        height: 20px;
+        background-color: #2D3748;
+        margin: 0 6px;
+    }
+    .block-full-module-date {
+        margin: 30px 18px;
+    }
+    .block-full-module-cell {
         width: 92px;
         height: 38px;
         font-size: 16px;
-        border-radius: 4px;
+        border-radius: 8px;
         margin-left: 20px;
     }
 }

@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { DayPicker } from "react-day-picker";
+import { useNavigate } from 'react-router-dom';
+import { ru } from "react-day-picker/locale";
+import "react-day-picker/style.css";
 import Burger from './img/icon _burger menu_.png';
 import Logo from './img/logo.png';
 import DoneModuleImg from './img/Done module.png';
 import createmoduleImg from './img/createmodule.png';
+import FullModules from './img/FullModules.png'
 import UserImg from './img/user.png';
 import Calendar from './img/Calendar.png';
 import './PersonalAccount.css';
@@ -15,19 +20,32 @@ const PersonalAccount = () => {
     const module = ['1 модуль', '3 модуля', '10 модулей', '15 модулей', '40 модулей', '100 модулей', '300 модулей'];
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
+    const [selected, setSelected] = useState(null);
+
+    const navigate = useNavigate();
 
     const [userNamePlaceholder, setUserNamePlaceholder] = useState('');
     const [emailPlaceholder, setEmailPlaceholder] = useState('');
     const [stateBurger, setStateBurger] = useState(false)
 
     const [data, setData] = useState(null);
-    const userRole = JSON.parse(localStorage.getItem('dataUser'))?.role;
-    const userToken = JSON.parse(localStorage.getItem('dataUser'))?.token;
+    const [userRole, setUserRole] = useState(JSON.parse(localStorage.getItem('dataUser')).role);
+    const [userToken, setuserToken] = useState(JSON.parse(localStorage.getItem('dataUser'))?.token);
 
     const saveInfoUser = (event) => {
-        setUserName('');
-        setEmail('');
+        
     }
+
+    const [buttonAdmin, setButtonAdmin] = useState(false);
+    useEffect(() => {
+        setUserRole(JSON.parse(localStorage.getItem('dataUser')).role)
+        if (userRole === 'ROLE_ADMIN') {
+            setButtonAdmin(true);
+        } else {
+            setButtonAdmin(false);
+        }
+    }, [userRole]);
+
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -39,7 +57,35 @@ const PersonalAccount = () => {
         setUserNamePlaceholder(e.target.value);
     };
 
+    const saveDataUser = () => {
+        setuserToken(JSON.parse(localStorage.getItem('dataUser'))?.token)
+        axios.patch('http://localhost:8080/word-learner/api/v1/profile', 
+            {
+                "username" : userName,
+                "email" : email
+            },
+            {
+                headers: {
+                    'Authorization': `Bearer ${userToken}`
+                }
+            })
+            .then(response => {
+                console.log(response)
+                const dataUser = JSON.parse(localStorage.getItem('dataUser'));
+                dataUser.token = response.data.newToken
+                localStorage.setItem("dataUser", JSON.stringify(dataUser)); 
+                setuserToken(JSON.parse(localStorage.getItem('dataUser'))?.token)
+
+                setUserName(''); 
+                setEmail(''); 
+            })
+            .catch(error => {
+                console.error('Error fetching profile data:', error);
+            });
+    }
+
     useEffect(() => {
+        setuserToken(JSON.parse(localStorage.getItem('dataUser'))?.token)
         if (userToken) {
             axios.get('http://localhost:8080/word-learner/api/v1/profile', {
                 headers: {
@@ -72,6 +118,10 @@ const PersonalAccount = () => {
             setStateBurger(false)
         }
     }
+    
+    const exitAccount = () => {
+        navigate('/');
+    }
 
     if (!data) {
         return <div>Загрузка...</div>; 
@@ -85,11 +135,15 @@ const PersonalAccount = () => {
                     <img src={Logo} className='header-left-logo' alt="logo" />
                 </div>
                 <div className='header-left-container-buttons'  style={!stateBurger ? {display: 'inline-flex'} : {display: 'none'} }>
-                    <Link to={`/createdModeles/${userRole}`} className='header-left-button'>
+                    <Link to={`/fullModules/:${userRole}`} className='header-left-button'>
+                        <img src={FullModules} className='header-left-buttons-img'/>
+                        <span className='header-left-buttons-text'>Список модулей</span>
+                    </Link>
+                    <Link to={`/passedModule/${userRole}`} className='header-left-button'>
                         <img src={DoneModuleImg} className='header-left-buttons-img' alt="done modules" />
                         <span className='header-left-buttons-text'>Пройденные модули</span>
                     </Link>
-                    <Link to={`/createdModeles/${userRole}`} className='header-left-button'>
+                    <Link to={`/createdModeles/${userRole}`} className='header-left-button' style={buttonAdmin ? { display: 'flex' } : { display: 'none' }}>
                         <img src={createmoduleImg} className='header-left-buttons-img' alt="create modules" />
                         <span className='header-left-buttons-text'>Созданные модули</span>
                     </Link>
@@ -114,12 +168,17 @@ const PersonalAccount = () => {
                             <input type='text' placeholder={`${emailPlaceholder}`} onChange={handleEmailChange} value={email}/>
                         </div>
                     </div>
-                    <div className='save-info-user' onClick={saveInfoUser}>Сохранить</div>
+                    <div className='save-info-user' onClick={saveDataUser}>Сохранить</div>
                 </div>
 
                 <span className='title-data'>Действия</span>
                 <div className='right-user-actions'>
-                    <img src={Calendar} alt="calendar" />
+                    <DayPicker
+                        mode="single"
+                        locale={ru}
+                        selected={selected}
+                        onSelect={setSelected}
+                    />
                     <div className='right-user-actions-info'>
                         <span className='right-user-actions-info-title'>Текущая цепочка: 3 дня</span>
                         <div className='right-user-actions-info-container'>
@@ -172,7 +231,7 @@ const PersonalAccount = () => {
                         ))}
                     </div>
                 </div>
-                <a className='exit'>Выйти с аккаунта</a>
+                <a onClick={exitAccount} className='exit'>Выйти с аккаунта</a>
             </div>
         </div>
     );

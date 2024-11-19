@@ -1,7 +1,7 @@
-.create-module {
+.created-modules {
     display: flex;
 }
-.ModulesHeader {
+.header-left {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -55,4 +55,21 @@
 }
 .header-left-buttons-text:active{
     color: #3877EE;
+}
+
+.header-left-button img {
+    width: 1.6vw;
+}
+
+@media (max-width: 480px) {
+    .header-left-logo {
+        width: 36px;
+        height: 36px;
+    }
+    .created-modules {
+        display: flex;
+    }
+    .css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input {
+        
+    }
 }

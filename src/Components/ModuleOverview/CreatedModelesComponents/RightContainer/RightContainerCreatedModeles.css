@@ -1,11 +1,20 @@
-.created-modules-title-button {
+.overview-modules-title-description {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 6vw;
+    flex-direction: column;
+    margin-top: 11vw;
     margin-bottom: 2vw;
 }
-.created-modules-button {
+.overview-modules-description {
+    font-size: 0.9vw;
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    line-height: 1.5vw;
+    font-style: normal;
+    margin-top: 3vw;
+    width: 21vw;
+}
+.overview-modules-button {
     width: 8vw;
     height: 1.5vw;
     text-decoration: none;
@@ -24,7 +33,7 @@
     justify-content: center;
     align-items:center;
 }
-.created-modules-title {
+.overview-modules-title {
     font-size: 1.7vw;
     color: #2D3748;
     font-family: "Nunito", serif;
@@ -33,22 +42,24 @@
     line-height: 1.5vw;
     font-style: normal;
 }
-.container-created-modules {
+.container-overview-modules {
     display: grid;
     grid-template-columns: 19.5vw 19.5vw auto;
-    grid-template-rows: 13vw 13vw auto;
+    grid-template-rows: 6vw 6vw auto;
 }
-.block-created-module {
+.block-overview-module {
     width: 16.2vw;
-    height: 10.2vw;
+    height: 3vw;
     background-color: #F6F7FB;
     padding: 1vw;
+    display: flex;
+    align-items:center;
     border-radius: 0.6vw;
 }
-.container-created-modules a{
+.container-overview-modules a{
     text-decoration: none;
 }
-.block-created-module-title {
+.block-overview-module-title {
     font-size: 1.3vw;
     color: #3877EE;
     font-family: "Nunito", serif;
@@ -57,18 +68,18 @@
     line-height: 1.5vw;
     font-style: normal;
 }
-.block-created-module-line {
+.block-overview-module-line {
     width: 0.1vw;
     height: 1.2vw;
     background-color: #2D3748;
     margin: 0 0.6vw;
 }
-.block-created-module-date {
+.block-overview-module-date {
     display: flex;
     align-items: center;
     margin: 2vw 0;
 }
-.block-created-module-info {
+.block-overview-module-info {
     font-size: 1vw;
     color: #2D3748;
     font-family: "Nunito", serif;
@@ -77,8 +88,8 @@
     line-height: 1.5vw;
     font-style: normal;
 }
-.block-created-module-cell {
-    font-size: 0.8vw;
+.block-overview-module-cell {
+    font-size: 1.3vw;
     color: white;
     font-family: "Nunito", serif;
     font-optical-sizing: auto;
@@ -92,80 +103,65 @@
     justify-content: center;
     align-items: center;
     border-radius: 0.2vw;
-    cursor: pointer;
 }
 
-.full-modules-textField .css-cmpglg-MuiFormControl-root-MuiTextField-root{
-    width: 28vw;
-    border: 0.1vw solid #3877EE;
-    border-radius: 0.3vw;
-    
+.overview-modules-tasks {
+    margin-top: 1.5vw;
+    display: flex;
 }
-.full-modules-textField .css-1blp12k-MuiInputBase-root-MuiOutlinedInput-root {
-    font-size: 1vw;
-    color: #2D3748;
+.overview-modules-task {
+    font-size: 0.9vw;
+    color: #3877EE;
     font-family: "Nunito", serif;
     font-optical-sizing: auto;
-    font-weight: 600;
+    font-weight: 800;
     line-height: 1.5vw;
     font-style: normal;
-    height: 1vw;
+    border: 0.1vw solid #3877EE;
+    padding: 0.4vw 0.4vw;
+    margin-right: 0.5vw;
+    border-radius: 0.2vw;
+    cursor: pointer;
+}
+.MuiPagination-ul {
+    width: 57vw;
 }
 
 @media (max-width: 480px) {
-    .created-modules-title {
-        font-size: 16px;
-        width: 237px;;
-    }
-    .created-modules-title-button {
-        width: 228px;
-        display: ruby;
-        height: 30px;
-        flex-direction: column;
-    }
-    .created-modules-button {
-        width: 100px;
-        border-radius: 4px;
-        height: 27px;
-        font-size: 12px;
-        margin-top: 11px;
-    }
-    .full-modules-textField {
-        margin-bottom: 20px;
-    }
-    .container-created-modules {
-        display: block;
-    }
-    .block-created-module {
-        width: 280px;
-        height: 177px;
-        margin-bottom: 19px;
-        border-radius: 8px;
-        padding-top: 20px;
-    }
-    .block-created-module-title {
+    .overview-modules-title {
         font-size: 20px;
-        margin-left: 20px;
-        margin-top: 10px;
     }
-    .block-created-module-line {
-        display: none;
+    .overview-modules-description {
+        font-size: 16px;
+        width: 185px;
     }
-    .block-created-module-date {
+    .overview-modules-title-description {
+        margin-top: 80px;
+    }
+    .overview-modules-description {
+        margin-top: 30px;
+    }
+    .overview-modules-tasks {
+        margin-top: 20px;
+    }
+    .overview-modules-task {
+        padding: 9px 9px;
+        font-size: 16px;
+        border-radius: 4px;
+        margin-right: 8px;
+    }
+    .container-overview-modules {
         display: flex;
         flex-direction: column;
-        align-items:baseline;
     }
-    .block-created-module-info {
-        margin-bottom: 15px;
-        font-size: 16px;
-        margin-left: 20px;
-    }
-    .block-created-module-cell {
-        width: 92px;
-        height: 38px;
-        font-size: 16px;
+    .block-overview-module {
+        width: 280px;
+        height: 70px;
         border-radius: 4px;
-        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+    .block-overview-module-info {
+        font-size: 16px;
+        padding-left: 10px;
     }
 }
