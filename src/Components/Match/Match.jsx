@@ -105,10 +105,15 @@ const Match = () => {
   }, [userToken]);
 
   const changeAnswer = (e, index) => {
-    answersUser[index] = Number(e.target.value)
-    console.log(answersUser)
-    console.log(data.answer)
-  }
+    const value = Number(e.target.value);
+    if (value >= 0) {  
+      answersUser[index] = value;
+    } else {
+      e.target.value = '';  
+    }
+    console.log(answersUser);
+    console.log(data.answer);
+  };
 
   const checkAnswers = (event) => {
     event.preventDefault();

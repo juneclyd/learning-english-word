@@ -140,7 +140,7 @@ const Cards = () => {
                 </div>
             </header>
 
-            <div className="test-info">
+            <div className="cards-info">
                 <h1 className="test-info-title">Карточки «{testInfoTitle}»</h1>
                 <div className="container-test-info">
                     {data  ? (  // Проверка на наличие данных

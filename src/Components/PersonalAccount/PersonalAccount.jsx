@@ -62,8 +62,6 @@ const PersonalAccount = () => {
         const SERVER_URL = process.env.REACT_APP_BACKEND_URL
         setuserToken(JSON.parse(localStorage.getItem('dataUser'))?.token)
         if(userName != "" && email != "") {
-            console.log(userName)
-        console.log(email)
             axios.patch(`${SERVER_URL}word-learner/api/v1/profile`, 
                 {
                     "username" : userName,
@@ -217,7 +215,7 @@ const PersonalAccount = () => {
                     </div>
                     <span>Цепочка занятий</span>
                     <div className='right-user-actions-achievements-container'>
-                        {data.achievements.LEARNING.map((el, index) => (
+                        {data.achievements.STREAK.map((el, index) => (
                             <div
                             key={index}
                             className={`hexagon ${el.achieved === true ? 'active-achievement' : ''}`}
@@ -229,7 +227,7 @@ const PersonalAccount = () => {
                     </div>
                     <span>Изучено модулей</span>
                     <div className='right-user-actions-achievements-container'>
-                        {data.achievements.LEARNING.map((el, index) => (
+                        {data.achievements.MODULES_LEARNED.map((el, index) => (
                             <div
                             key={index}
                             className={`hexagon ${el.achieved === true ? 'active-achievement' : ''}`}

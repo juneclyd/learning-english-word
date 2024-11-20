@@ -35,7 +35,7 @@
 }
 .container-created-modules {
     display: grid;
-    grid-template-columns: 19.5vw 19.5vw auto;
+    grid-template-columns: 21.5vw 21.5vw auto;
     grid-template-rows: 13vw 13vw auto;
 }
 .block-created-module {

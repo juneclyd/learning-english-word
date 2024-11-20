@@ -1,7 +1,7 @@
 .test {
     display: flex;
 }
-.test-info {
+.cards-info {
     margin-top: 11vw;
     margin-bottom: 2vw;
 }
@@ -184,8 +184,13 @@
 
 
 @media (max-width: 480px) {
-    .test-info {
+    .cards-info {
+        display: flex;
         margin-top: 78px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
     }
     .test-info-title {
         font-size: 24px;
@@ -198,5 +203,16 @@
     .cards-task-info img{
         width: 216px;
         height: 111px;
+    }
+    .next-task3 span {
+        margin-left: 3vw;
+        width: 116px;
+        height: 28px;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    .right-light-buttons img {
+        width: 26px;
+        margin-top: 5px;
     }
 }

@@ -82,8 +82,8 @@ const RightContainerCreatedModeles = () => {
 
   // Переход к детальному просмотру модуля
   const clikGoOver = (id) => {
-    setUserRole(JSON.parse(localStorage.getItem('dataUser')).role);
     localStorage.setItem("idModule", JSON.stringify(id));
+    console.log(userRole)
     navigate(`/moduleOverview/${userRole}`);
   };
 
