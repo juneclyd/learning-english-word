@@ -200,7 +200,7 @@ const Match = () => {
                     <span className='modal-window-match-info-text'><p>Верно: </p>  {rightAnswer} слов</span>
                     <span className='modal-window-match-info-text'><p>Неверно: </p>   {(page) - rightAnswer} слов</span>
                 </div>
-                <div className="exit-task exit-task1" onClick={clickExit}><span className='exit-task-text'>Выйти</span></div>
+                <div className="exit-task-test exit-test-task1" onClick={clickExit}><span className='exit-task-text'>Выйти</span></div>
                 {console.log(page)}
             </div>
     </div>

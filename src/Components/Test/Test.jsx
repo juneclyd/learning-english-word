@@ -167,7 +167,7 @@ const Test = () => {
                             <span className='modal-window-test-info-text'><p>Верно: </p>  {rightAnswer} слов</span>
                             <span className='modal-window-test-info-text'><p>Неверно: </p>   {(page) - rightAnswer} слов</span>
                         </div>
-                        <div className="exit-task" onClick={clickExit}><span className='exit-task-text'>Выйти</span></div>
+                        <div className="exit-task-test" onClick={clickExit}><span className='exit-task-text-test'>Выйти</span></div>
                     </div>
             </div>
 
